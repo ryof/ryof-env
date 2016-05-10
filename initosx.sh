@@ -1,9 +1,11 @@
 # set dotfiles
-if [ ! -e ~/.ryof_env ]; then
+if [ ! -e ~/.ryof-env ]; then
 	git clone https://github.com/ryof/ryof-env ~/.ryof-env
 	ln -s ~/.ryof-env/.vimrc ~/.vimrc
 	ln -s ~/.ryof-env/.bash_profile ~/.bash_profile
+	source ~/.bash_profile
 fi
+
 # install homebrew if not
 if type brew > /dev/null 2>&1; then
 	echo "brew exists"
