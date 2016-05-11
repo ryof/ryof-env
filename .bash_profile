@@ -19,7 +19,7 @@ export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/.vimrc' | source \$MYVIMRC"
 EOF
 		sshrc "$*"
 	else
-		\ssh "$*"
+		$(which ssh) "$*"
 	fi
 }
 # OSX-specific
