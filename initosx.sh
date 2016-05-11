@@ -55,6 +55,7 @@ brew install lua && \
 brew install nkf
 brew install nmap
 brew install node
+brew install rbenv
 brew install source-highlight
 brew install sshrc
 brew install tree
