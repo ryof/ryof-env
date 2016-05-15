@@ -7,8 +7,6 @@ export HISTCONTROL=ignoredups
 alias fuck='networksetup -setairportpower en0 off; sleep 2; networksetup -setairportpower en0 on'
 alias ls='ls -G'
 alias githubconfig='git config --local user.name ryof; git config --local user.email "ryo.furuyama@gmail.com"'
-alias gem='rbenv exec gem'
-alias bundle='rbenv exec bundle'
 function ssh_function () {
 	if type sshrc > /dev/null; then
 		cat ~/.bash_profile > ~/.sshrc
@@ -27,7 +25,8 @@ EOF
 alias ssh='ssh_function'
 # OSX-specific
 if [[ "$OSTYPE" == "darwin"* ]]; then
-	export PATH=/opt/brew/bin:/opt/brew/sbin:$PATH
+	export PATH=/opt/brew/bin:/opt/brew/sbin:$HOME/.rbenv/bin:$PATH
+	eval "$(rbenv init -)"
 
 	# brew options
 	export HOMEBREW_CASK_OPTS='--appdir=/Applications'
