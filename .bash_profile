@@ -23,6 +23,9 @@ EOF
 	fi
 }
 alias ssh='ssh_function'
+function unzip () {
+	$(which unzip) -d ${1%.*} ${1}
+}
 # OSX-specific
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	export PATH=/opt/brew/bin:/opt/brew/sbin:$HOME/.rbenv/bin:$PATH
