@@ -55,6 +55,7 @@ brew install lua && \
 brew install nkf
 brew install nmap
 brew install node
+brew install pyenv
 brew install rbenv
 brew install rsense
 brew install source-highlight
