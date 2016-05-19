@@ -5,6 +5,7 @@ export HISTFILESIZE=$HISTSIZE
 export HISTCONTROL=ignoredups
 
 alias fuck='networksetup -setairportpower en0 off; sleep 2; networksetup -setairportpower en0 on'
+alias less='less -N'
 alias ls='ls -G'
 alias githubconfig='git config --local user.name ryof; git config --local user.email "ryo.furuyama@gmail.com"'
 function ssh_function () {

@@ -47,3 +47,6 @@ Thumbs.db
 /.bundle/
 /vendor/bundle
 /lib/bundler/man/
+
+# Python
+.python-version
