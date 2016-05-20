@@ -6,6 +6,11 @@ if [ ! -e ~/.ryof-env ]; then
 	ln -s ~/.ryof-env/.bash_profile ~/.bash_profile
 fi
 
+# install google-cloud-sdk
+export CLOUDSDK_CORE_DISABLE_PROMPTS=1 
+curl https://sdk.cloud.google.com | bash
+mv ${HOME}/.bash_profile.backup .ryof-env/.bash_profile
+
 # install homebrew if not
 if type brew > /dev/null 2>&1; then
 	echo "brew exists"
@@ -42,7 +47,7 @@ brew cask install visual-studio-code
 brew cask install vlc
 
 # install Quick Look plugins (cf. https://github.com/sindresorhus/quick-look-plugins)
-brew cask install elcolorcode
+brew cask install qlcolorcode
 brew cask install qlstephen
 brew cask install qlmarkdown
 brew cask install quicklook-json
@@ -101,23 +106,75 @@ brew install tree
 
 source ~/.bash_profile
 
+# install latest stable ruby
+# FIXME: rbenv install $(rbenv install -l | grep -v - | tail -1) && rbenv rehash
+
+# install latest stable python 2 and 3
+pyenv install $(pyenv install -l | grep -v - | tr -d ' ' | grep '^2' | tail -1) && \
+	pyenv install $(pyenv install -l | grep -v - | tr -d ' ' | grep '^3' | tail -1) && \
+	pyenv rehash
+
 # change OSX settings
 defaults write com.apple.finder QLEnableTextSelection -bool true
 defaults write com.apple.screencapture type jpg
 defaults write com.apple.screencapture “disable-shadow” -bool yes
 defaults write com.apple.screencapture name ss
 defaults write com.apple.screencapture location ~/ss/
+# fast input
 defaults write NSGlobalDomain KeyRepeat -int 2
 defaults write NSGlobalDomain InitialKeyRepeat -int 15
+# conventional scroll
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
-# TODO: Change system language to English
-# TODO: Add some applications to LoginItem
-# TODO: Disable 'select next iput source' shortcut
-# TODO: Change Spotlight keyboard-shortcut to option+command+space
+# Change system language to English, and Japanese
+defaults write -g AppleLanguages -array en ja
+# Add some applications to LoginItem
+# FIXME: invalid?
+defaults write ~/Library/Preferences/com.apple.loginitems.plist -aaray-add '{Path="/Applications/ShiftIt.app";}'
+# Disable 'select next iput source' shortcut
+# FIXME: wrong keymap?
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 61 "{enabled = 0; value = {parameters = (32, 49, 1572864); type = 'standard';};}"
+# Change Spotlight keyboard-shortcut to option+command+space
+# FIXME: wrong keymap?
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 "{enabled = 1; value = {parameters = (32, 49, 1572864); type = 'standard';};}"
 # Switch key CapsLock <> Control
+# FIXME: not working
 defaults -currentHost write -g 'com.apple.keyboard.modifiermapping.1452-566-0' -array '<dict><key>HIDKeyboardModifierMappingDst</key><integer>2</integer><key>HIDKeyboardModifierMappingSrc</key><integer>0</integer></dict>'
-# TODO: Some Dock settings
 
-killall Finder
+# Some Dock settings
+# move Dock to left
+defaults write com.apple.dock orientation left
+# automatically hide dock
+defaults write com.apple.dock autohide -bool true
+# show no applications except Finder, Downloads, Trash and running ones
+defaults write com.apple.dock persistent-apps -array
+# size down Dock
+defaults write com.apple.dock tilesize -int 25
+
+# Some Finder settings
+defaults write com.apple.finder CreateDesktop -bool false
+defaults write com.apple.finder NewWindowTarget -string "PfLo"
+defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}"
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
+defaults write com.apple.finder ShowRecentTags -bool false
+defaults write com.apple.finder SidebarDevicesSectionDisclosedState -bool true
+defaults write com.apple.finder SidebarPlacesSectionDisclosedState -bool true
+defaults write com.apple.finderSidebarSharedSectionDisclosedState -bool true
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+# TODO: cannot specify sidebar items?
+
+# others
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.menuextra.battery ShowPercent -string "YES"
+# Allow apps downloaded from anywhere
+# FIXME: not working?
+sudo defaults write /Library/Preferences/com.apple.security GKAutoRearm -bool NO
+# Turn off Bluetooth
+sudo defaults write /Library/Preferences/com.apple.Bluetooth ControllerPowerState -int 0
+
 killall Dock
 killall SystemUIServer
+killall Finder
+
+echo -e "You better reboot this machine.. \xF0\x9f\xa4\x94"
