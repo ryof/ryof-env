@@ -131,14 +131,12 @@ defaults write -g AppleLanguages -array en ja
 # FIXME: invalid?
 defaults write ~/Library/Preferences/com.apple.loginitems.plist -aaray-add '{Path="/Applications/ShiftIt.app";}'
 # Disable 'select next iput source' shortcut
-# FIXME: wrong keymap?
-defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 61 "{enabled = 0; value = {parameters = (32, 49, 1572864); type = 'standard';};}"
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 61 "<dict><key>enabled</key><false/></dict>"
 # Change Spotlight keyboard-shortcut to option+command+space
-# FIXME: wrong keymap?
-defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 "{enabled = 1; value = {parameters = (32, 49, 1572864); type = 'standard';};}"
-# Switch key CapsLock <> Control
-# FIXME: not working
-defaults -currentHost write -g 'com.apple.keyboard.modifiermapping.1452-566-0' -array '<dict><key>HIDKeyboardModifierMappingDst</key><integer>2</integer><key>HIDKeyboardModifierMappingSrc</key><integer>0</integer></dict>'
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 "<dict><key>enabled</key><true/><key>value</key><dict><key>parameters</key><array><integer>32</integer><integer>49</integer><integer>1572864</integer></array><key>type</key><string>standard</string></dict></dict>"
+# Remap CapsLock key to Control
+keyboardid=$(ioreg -n IOHIDKeyboard -r | grep -E 'VendorID"|ProductID' | awk '{ print $4 }' | paste -s -d'-\n' -)'-0'
+defaults -currentHost add -g com.apple.keyboard.modifiermapping.${keyboardid} -array '<dict><key>HIDKeyboardModifierMappingDst</key></dict><integer>2</integer> <key>HIDKeyboardModifierMappingSrc</key><key>0</key>'
 
 # Some Dock settings
 # move Dock to left
@@ -172,6 +170,11 @@ defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 sudo defaults write /Library/Preferences/com.apple.security GKAutoRearm -bool NO
 # Turn off Bluetooth
 sudo defaults write /Library/Preferences/com.apple.Bluetooth ControllerPowerState -int 0
+
+# reflect preference-changes
+sudo killall cfprefsd
+# set Google Chrome default browser
+open -a "Google Chrome" --args --make-default-browser
 
 killall Dock
 killall SystemUIServer
