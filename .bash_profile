@@ -4,6 +4,7 @@ export HISTSIZE=10000
 export HISTFILESIZE=$HISTSIZE
 export HISTCONTROL=ignoredups
 
+alias awk='gawk'
 alias fuck='networksetup -setairportpower en0 off; sleep 2; networksetup -setairportpower en0 on'
 alias less='less -N'
 alias ls='ls -G'
