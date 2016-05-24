@@ -1,9 +1,14 @@
 # set dotfiles
 if [ ! -e ~/.ryof-env ]; then
-	xcode-select --install
-	git clone https://github.com/ryof/ryof-env ~/.ryof-env
-	ln -s ~/.ryof-env/.vimrc ~/.vimrc
-	ln -s ~/.ryof-env/.bash_profile ~/.bash_profile
+	if type git > /dev/null 2>&1; then
+		git clone https://github.com/ryof/ryof-env ~/.ryof-env
+		ln -s ~/.ryof-env/.vimrc ~/.vimrc
+		ln -s ~/.ryof-env/.bash_profile ~/.bash_profile
+	else
+		echo 'After installing some tools, execute this script again.'
+		xcode-select --install
+		exit 0
+	fi
 fi
 
 # install google-cloud-sdk
@@ -15,13 +20,8 @@ mv ${HOME}/.bash_profile.backup .ryof-env/.bash_profile
 if type brew > /dev/null 2>&1; then
 	echo "brew exists"
 else
-	sudo mkdir -p /opt/brew
-	sudo chown -R $(id -u):$(id -g) /opt
-	cd /opt/brew
-	curl -L https://github.com/Homebrew/homebrew/tarball/master | tar xz --strip 1 -C .
-	# avoiding permission-denied for some casks
-	sudo ln -s /opt/brew /usr/local/bin/brew
 	sudo chown -R $(id -u):$(id -g) /usr/local/
+	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 brew update
 
@@ -81,7 +81,7 @@ brew install gawk
 brew install awscli
 brew install cf-cli
 brew install dos2unix
-# FIXME: brew install gcc
+brew install gcc
 brew install git
 brew install go
 brew install gradle
@@ -99,15 +99,15 @@ brew install nmap
 brew install node
 brew install pyenv
 brew install rbenv
-# FIXME: brew install source-highlight
+brew install source-highlight
 brew install sshrc
 brew install tree
-# FIXME: brew install wget
+brew install wget
 
 source ~/.bash_profile
 
 # install latest stable ruby
-# FIXME: rbenv install $(rbenv install -l | grep -v - | tail -1) && rbenv rehash
+rbenv install $(rbenv install -l | grep -v - | tail -1) && rbenv rehash
 
 # install latest stable python 2 and 3
 pyenv install $(pyenv install -l | grep -v - | tr -d ' ' | grep '^2' | tail -1) && \
@@ -129,7 +129,7 @@ defaults write -g com.apple.swipescrolldirection -bool false
 defaults write -g AppleLanguages -array en ja
 # Select Dictionaries
 defaults write -g com.apple.DictionaryServices -dict-add "DCSActiveDictionaries" '("/Library/Dictionaries/Sanseido Super Daijirin.dictionary", "/Library/Dictionaries/Sanseido The WISDOM English-Japanese Japanese-English Dictionary.dictionary", "/System/Library/Frameworks/CoreServices.framework/Frameworks/DictionaryServices.framework/Resources/Wikipedia.wikipediadictionary", "/Library/Dictionaries/Oxford Thesaurus of English.dictionary", "/Library/Dictionaries/Oxford Dictionary of English.dictionary")'
-# iODO: Add some applications to LoginItem
+# TODO: Add some applications to LoginItem
 # Disable 'select next iput source' shortcut
 defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 61 "<dict><key>enabled</key><false/></dict>"
 # Change Spotlight keyboard-shortcut to option+command+space

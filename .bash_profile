@@ -30,7 +30,7 @@ function unzip () {
 }
 # OSX-specific
 if [[ "$OSTYPE" == "darwin"* ]]; then
-	export PATH=/opt/brew/bin:/opt/brew/sbin:$HOME/.rbenv/bin:$PATH
+	export PATH=/usl/local/bin:/usr/local/sbin:$HOME/.rbenv/bin:$PATH
 	eval "$(rbenv init -)"
 	
 	export PYENV_ROOT=$HOME/.pyenv
