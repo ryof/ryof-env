@@ -1,20 +1,21 @@
 # set dotfiles
 if [ ! -e ~/.ryof-env ]; then
-	if type git > /dev/null 2>&1; then
+	if git version > /dev/null 2>&1; then
 		git clone https://github.com/ryof/ryof-env ~/.ryof-env
 		ln -s ~/.ryof-env/.vimrc ~/.vimrc
 		ln -s ~/.ryof-env/.bash_profile ~/.bash_profile
 	else
 		echo 'After installing some tools, execute this script again.'
-		xcode-select --install
 		exit 0
 	fi
 fi
 
 # install google-cloud-sdk
-export CLOUDSDK_CORE_DISABLE_PROMPTS=1 
-curl https://sdk.cloud.google.com | bash
-mv ${HOME}/.bash_profile.backup .ryof-env/.bash_profile
+if [ ! -e ~/google-cloud-sdk ]; then
+	export CLOUDSDK_CORE_DISABLE_PROMPTS=1 
+	curl https://sdk.cloud.google.com | bash
+	mv ${HOME}/.bash_profile.backup .ryof-env/.bash_profile
+fi
 
 # install homebrew if not
 if type brew > /dev/null 2>&1; then
@@ -30,6 +31,7 @@ brew tap homebrew/binary
 brew tap cloudfoundry/tap
 
 # install OSX applications
+export HOMEBREW_CASK_OPTS='--appdir=/Applications'
 brew cask install appcleaner
 brew cask install atom
 brew cask install eclipse-platform
@@ -42,7 +44,6 @@ brew cask install kitematic
 brew cask install skype
 brew cask install shiftit
 brew cask install sourcetree
-brew cask install virtualbox
 brew cask install visual-studio-code
 brew cask install vlc
 
