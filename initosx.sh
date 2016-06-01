@@ -4,6 +4,8 @@ if [ ! -e ~/.ryof-env ]; then
 		git clone https://github.com/ryof/ryof-env ~/.ryof-env
 		ln -s ~/.ryof-env/.vimrc ~/.vimrc
 		ln -s ~/.ryof-env/.bash_profile ~/.bash_profile
+		ln -s ~/.ryof-env/.gitignore ~/.gitignore_global
+		git config --global core.excludesfile ~/.gitignore_global
 	else
 		echo 'After installing some tools, execute this script again.'
 		exit 0
