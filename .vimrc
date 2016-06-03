@@ -21,6 +21,7 @@ if isdirectory(s:dein_dir)
   call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
   call dein#add('Shougo/vimshell')
   call dein#add('fatih/vim-go')
+  call dein#add('kchmck/vim-coffee-script')
 
   " Required:
   call dein#end()
