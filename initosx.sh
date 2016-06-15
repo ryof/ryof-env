@@ -42,6 +42,7 @@ brew cask install kitematic
 brew cask install skype
 brew cask install shiftit
 brew cask install sourcetree
+brew cask install transmission
 brew cask install virtualbox
 brew cask install visual-studio-code
 brew cask install vlc
@@ -78,6 +79,7 @@ brew install android-sdk && \
 	    }
 	"
 brew install gawk
+brew install arp-scan
 brew install awscli
 brew install cf-cli
 brew install dos2unix
