@@ -12,6 +12,12 @@ if [ ! -e ~/.ryof-env ]; then
 	fi
 fi
 
+# get AppleID informations
+read -p "AppleID: " apple_user_name
+echo
+read -sp "AppleID password: " apple_password
+echo
+
 # install google-cloud-sdk
 if [ ! -e ~/google-cloud-sdk ]; then
 	export CLOUDSDK_CORE_DISABLE_PROMPTS=1 
@@ -100,6 +106,7 @@ brew install lua && \
 	mkdir -p ~/.vim/dein.vim && \
 	sh ./installer.sh ~/.vim/dein.vim && \
 	rm installer.sh
+brew install mas
 brew install nkf
 brew install nmap
 brew install node
@@ -111,6 +118,17 @@ brew install tree
 brew install wget
 
 source ~/.bash_profile
+
+# install store applications
+mas signin ${apple_user_name} "${apple_password}" 
+mas install 715768417 #Microsoft Remote Desktop
+mas install 407963104 #Pixelmator
+mas install 497799835 #Xcode
+mas install 803453959 #Slack
+mas install 409183694 #Keynote
+mas install 492167985 #MenubarClock
+mas install 425424353 #The Unarchiver
+mas install 451444120 #Memory Clean
 
 # install latest stable ruby
 rbenv install $(rbenv install -l | grep -v - | tail -1) && rbenv rehash
