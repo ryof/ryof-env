@@ -111,6 +111,7 @@ brew install rbenv
 brew install source-highlight
 brew install sshrc
 brew install tree
+brew install watch
 brew install wget
 
 source ~/.bash_profile
