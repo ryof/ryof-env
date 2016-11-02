@@ -119,11 +119,8 @@ brew install scala
 brew install source-highlight
 brew install sshrc
 brew install tree
-<<<<<<< HEAD
 brew install typesafe-activator
-=======
 brew install watch
->>>>>>> 165e510a788463390a12997781c5e585cca4e8d5
 brew install wget
 
 source ~/.bash_profile
