@@ -105,9 +105,11 @@ brew install nmap
 brew install node
 brew install pyenv
 brew install rbenv
+brew install scala
 brew install source-highlight
 brew install sshrc
 brew install tree
+brew install typesafe-activator
 brew install wget
 
 source ~/.bash_profile
