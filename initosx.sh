@@ -135,6 +135,8 @@ mas install 409183694 #Keynote
 mas install 492167985 #MenubarClock
 mas install 425424353 #The Unarchiver
 mas install 451444120 #Memory Clean
+mas install 409789998 #Twitter
+mas install 406056744 #Evernote
 
 # install latest stable ruby
 rbenv install $(rbenv install -l | grep -v - | tail -1) && rbenv rehash
