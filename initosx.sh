@@ -36,13 +36,16 @@ brew tap cloudfoundry/tap
 export HOMEBREW_CASK_OPTS='--appdir=/Applications'
 brew cask install appcleaner
 brew cask install atom
+brew cask install datagrip
 brew cask install eclipse-platform
 brew cask install firefox
 brew cask install google-chrome
 brew cask install google-japanese-ime
 brew cask install iterm2
 brew cask install java
+brew cask install kindle
 brew cask install kitematic
+brew cask install pycharm
 brew cask install skype
 brew cask install shiftit
 brew cask install sourcetree
@@ -109,7 +112,11 @@ brew install scala
 brew install source-highlight
 brew install sshrc
 brew install tree
+<<<<<<< HEAD
 brew install typesafe-activator
+=======
+brew install watch
+>>>>>>> 165e510a788463390a12997781c5e585cca4e8d5
 brew install wget
 
 source ~/.bash_profile
