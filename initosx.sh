@@ -115,7 +115,8 @@ brew install nmap
 brew install node
 brew install pyenv
 brew install rbenv
-brew install scala
+brew install scala && \
+	brew install sbt
 brew install source-highlight
 brew install sshrc
 brew install tree
