@@ -139,6 +139,9 @@ mas install 451444120 #Memory Clean
 mas install 409789998 #Twitter
 mas install 406056744 #Evernote
 
+# Agree to the Xcode license
+sudo xcrun cc
+
 # install latest stable ruby
 rbenv install $(rbenv install -l | grep -v - | tail -1) && rbenv rehash
 
