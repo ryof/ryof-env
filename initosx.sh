@@ -168,8 +168,12 @@ defaults write -g com.apple.DictionaryServices -dict-add "DCSActiveDictionaries"
 # TODO: Add some applications to LoginItem
 # Disable 'select next iput source' shortcut
 defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 61 "<dict><key>enabled</key><false/></dict>"
+# Change 'Select the previous input source' to command+space
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 60 "<dict><key>enabled</key><true/><key>value</key><dict><key>parameters</key><array><integer>32</integer><integer>49</integer><integer>1048576</integer></array><key>type</key><string>standard</string></dict></dict>"
 # Change Spotlight keyboard-shortcut to option+command+space
 defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 "<dict><key>enabled</key><true/><key>value</key><dict><key>parameters</key><array><integer>32</integer><integer>49</integer><integer>1572864</integer></array><key>type</key><string>standard</string></dict></dict>"
+# Disable 'Show Finder search window' shortcut
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 65 "<dict><key>enabled</key><false/></dict>"
 # Change shortcut for focusing on next window
 defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 9 "<dict><key>enabled</key><true/><key>value</key><dict><key>parameters</key><array><integer>96</integer><integer>50</integer><integer>1572864</integer></array><key>type</key><string>standard</string></dict></dict>"
 # Remap CapsLock key to Control
