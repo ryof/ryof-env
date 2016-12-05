@@ -15,8 +15,6 @@ fi
 # get AppleID informations
 read -p "AppleID: " apple_user_name
 echo
-read -sp "AppleID password: " apple_password
-echo
 
 # install google-cloud-sdk
 if [ ! -e ~/google-cloud-sdk ]; then
@@ -127,17 +125,10 @@ brew install wget
 source ~/.bash_profile
 
 # install store applications
-mas signin ${apple_user_name} "${apple_password}" 
-mas install 715768417 #Microsoft Remote Desktop
-mas install 407963104 #Pixelmator
-mas install 497799835 #Xcode
-mas install 803453959 #Slack
-mas install 409183694 #Keynote
-mas install 492167985 #MenubarClock
-mas install 425424353 #The Unarchiver
-mas install 451444120 #Memory Clean
-mas install 409789998 #Twitter
-mas install 406056744 #Evernote
+mas signin --dialog ${apple_user_name} 
+for id in $(mas list | cut -d' ' -f1); do
+	mas install ${id}
+done
 
 # Agree to the Xcode license
 sudo xcrun cc
