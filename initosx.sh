@@ -35,6 +35,7 @@ brew update
 # install brew packages
 brew tap homebrew/binary
 brew tap cloudfoundry/tap
+brew tap caskroom/versions
 
 # install OSX applications
 export HOMEBREW_CASK_OPTS='--appdir=/Applications'
@@ -46,6 +47,7 @@ brew cask install eclipse-platform
 brew cask install firefox
 brew cask install google-chrome
 brew cask install google-japanese-ime
+brew cask install intellij-idea-ce
 brew cask install iterm2
 brew cask install java
 brew cask install kindle
