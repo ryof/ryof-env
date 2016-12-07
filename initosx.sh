@@ -110,7 +110,10 @@ brew install lua && \
 brew install mas
 brew install nkf
 brew install nmap
-brew install node
+brew install nodebrew && \
+	mkdir -p ~/.nodebrew/src && \
+	nodebrew install-binary latest && \
+	nodebrew use latest
 brew install pyenv
 brew install rbenv
 brew install scala && \

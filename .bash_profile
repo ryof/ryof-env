@@ -38,6 +38,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 	export PATH=$PYENV_ROOT/bin:$PATH
 	eval "$(pyenv init -)"
 
+	export PATH=$PATH:~/.nodebrew/current/bin
+
 	# brew options
 	export HOMEBREW_CASK_OPTS='--appdir=/Applications'
 
