@@ -140,11 +140,17 @@ done
 sudo xcrun cc
 
 # install latest stable ruby
-rbenv install $(rbenv install -l | grep -v - | tail -1) && rbenv rehash
+ruby_latest=$(rbenv install -l | grep -v - | tail -1)
+rbenv install ${ruby_latest} && \
+	rbenv global ${ruby_latest} && \
+	rbenv rehash
 
 # install latest stable python 2 and 3
-pyenv install $(pyenv install -l | grep -v - | tr -d ' ' | grep '^2' | tail -1) && \
-	pyenv install $(pyenv install -l | grep -v - | tr -d ' ' | grep '^3' | tail -1) && \
+python2_latest=$(pyenv install -l | grep -v - | tr -d ' ' | grep '^2' | tail -1)
+python3_latest=$(pyenv install -l | grep -v - | tr -d ' ' | grep '^3' | tail -1)
+pyenv install ${python2_latest} && \
+	pyenv install ${python3_latest} && \
+	pyenv global system ${python2_latest} ${python3_latest} && \
 	pyenv rehash
 
 # change OSX settings
