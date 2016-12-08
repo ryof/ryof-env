@@ -34,6 +34,7 @@ brew update
 
 # install brew packages
 brew tap homebrew/binary
+brew tap homebrew/services
 brew tap cloudfoundry/tap
 brew tap caskroom/versions
 
@@ -111,6 +112,8 @@ brew install lua && \
 	sh ./installer.sh ~/.vim/dein.vim && \
 	rm installer.sh
 brew install mas
+brew install mysql && \
+	brew services start mysql
 brew install nkf
 brew install nmap
 brew install nodebrew && \
