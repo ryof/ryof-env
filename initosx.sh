@@ -105,12 +105,7 @@ brew install iftop
 brew install imagemagick
 brew install jad
 brew install jq
-brew install lua && \
-	brew install vim --with-lua && \
-	curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh && \
-	mkdir -p ~/.vim/dein.vim && \
-	sh ./installer.sh ~/.vim/dein.vim && \
-	rm installer.sh
+brew install lua
 brew install mas
 brew install mysql && \
 	brew services start mysql
@@ -128,6 +123,11 @@ brew install source-highlight
 brew install sshrc
 brew install tree
 brew install typesafe-activator
+brew install vim --with-lua && \
+	curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh && \
+	mkdir -p ~/.vim/dein.vim && \
+	sh ./installer.sh ~/.vim/dein.vim && \
+	rm installer.sh
 brew install watch
 brew install wget
 
