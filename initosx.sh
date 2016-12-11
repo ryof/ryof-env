@@ -34,6 +34,7 @@ brew update
 
 # install brew packages
 brew tap homebrew/binary
+brew tap homebrew/completions
 brew tap homebrew/services
 brew tap cloudfoundry/tap
 brew tap caskroom/versions
@@ -92,11 +93,12 @@ brew install android-sdk && \
 	        }
 	    }
 	"
-brew install gawk
 brew install arp-scan
 brew install awscli
+brew install bash-completion
 brew install cf-cli
 brew install dos2unix
+brew install gawk
 brew install gcc
 brew install git
 brew install go
@@ -130,6 +132,14 @@ brew install vim --with-lua && \
 	rm installer.sh
 brew install watch
 brew install wget
+
+# install completions
+brew install docker-completion
+brew install docker-compose-completion
+brew install docker-machine-completion
+brew install gem-completion
+brew install maven-completion
+brew install ruby-completion
 
 source ~/.bash_profile
 
