@@ -23,6 +23,7 @@ if isdirectory(s:dein_dir)
   call dein#add('fatih/vim-go')
   call dein#add('kchmck/vim-coffee-script')
   call dein#add('derekwyatt/vim-scala')
+  call dein#add('vim-scripts/nginx.vim')
 
   " Required:
   call dein#end()
@@ -143,3 +144,8 @@ endif
 " https://github.com/c9s/perlomni.vim
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
+" filetypes
+au BufRead,BufNewFile *.nginx set ft=nginx
+au BufRead,BufNewFile */etc/nginx/* set ft=nginx
+au BufRead,BufNewFile */usr/local/nginx/conf/* set ft=nginx
+au BufRead,BufNewFile nginx.conf set ft=nginx
