@@ -119,6 +119,7 @@ brew install nodebrew && \
 	nodebrew use latest
 brew install pyenv
 brew install rbenv
+brew install rename
 brew install scala && \
 	brew install sbt
 brew install source-highlight
