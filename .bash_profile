@@ -49,6 +49,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 	if [ -f $(brew --prefix)/etc/bash_completion ]; then
 		. $(brew --prefix)/etc/bash_completion
 	fi
+	complete -C "$(brew --prefix)/bin/aws_completer" aws
 
 	# Google Cloud SDK settings
 	source $HOME/google-cloud-sdk/path.bash.inc
