@@ -25,6 +25,7 @@ if isdirectory(s:dein_dir)
   call dein#add('derekwyatt/vim-scala')
   call dein#add('vim-scripts/nginx.vim')
   call dein#add('plasticboy/vim-markdown')
+  call dein#add('vim-terraform')
 
   " Required:
   call dein#end()
