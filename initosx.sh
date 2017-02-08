@@ -5,7 +5,7 @@ if [ ! -e ~/.ryof-env ]; then
 		ln -s ~/.ryof-env/.vimrc ~/.vimrc
 		ln -s ~/.ryof-env/.bash_profile ~/.bash_profile
 		ln -s ~/.ryof-env/.gitignore ~/.gitignore_global
-		git config --global core.excludesfile ~/.gitignore_global
+		ln -s ~/.ryof-env/.gitconfig ~/.gitconfig
 	else
 		echo 'After installing some tools, execute this script again.'
 		exit 0

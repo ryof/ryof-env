@@ -1,0 +1,10 @@
+[user]
+	name = ryof
+	email = ryo.furuyama@gmail.com
+
+[core]
+	excludesfiles = ~/gitignore_global
+	pager = less
+
+[credential]
+	helper = osxkeychain
