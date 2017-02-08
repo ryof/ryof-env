@@ -42,9 +42,9 @@ endif
 syntax enable
 set nu
 set autoindent
-set tabstop=4
-set shiftwidth=4
-set noexpandtab
+set tabstop=2
+set shiftwidth=2
+set expandtab
 set softtabstop=0
 set incsearch
 set backspace=indent,eol,start
