@@ -50,3 +50,7 @@ Thumbs.db
 
 # Python
 .python-version
+
+# Temp files
+*.swp
+*~
