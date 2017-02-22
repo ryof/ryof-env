@@ -10,22 +10,6 @@ alias fuck='networksetup -setairportpower en0 off; sleep 2; networksetup -setair
 alias less='less -N'
 alias ls='ls -G'
 alias githubconfig='git config --local user.name ryof; git config --local user.email "ryo.furuyama@gmail.com"'
-function ssh_function () {
-	if type sshrc > /dev/null; then
-		cat ~/.bash_profile > ~/.sshrc
-		mkdir -p ~/.sshrc.d
-		if [ ! -e ~/.sshrc.d/.vimrc ]; then
-			ln -s ~/.vimrc ~/.sshrc.d/.vimrc
-		fi
-		cat << 'EOF' >> ~/.sshrc
-export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/.vimrc' | source \$MYVIMRC"
-EOF
-		sshrc "$*"
-	else
-		$(which ssh) "$*"
-	fi
-}
-alias ssh='ssh_function'
 function unzip () {
 	$(which unzip) -d ${1%.*} ${1}
 }

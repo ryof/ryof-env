@@ -123,7 +123,6 @@ brew install rename
 brew install scala && \
 	brew install sbt
 brew install source-highlight
-brew install sshrc
 brew install tree
 brew install typesafe-activator
 brew install vim --with-lua && \
