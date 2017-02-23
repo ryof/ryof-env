@@ -47,6 +47,7 @@ brew cask install datagrip
 brew cask install docker
 brew cask install eclipse-platform
 brew cask install firefox
+brew cask install flashlight
 brew cask install google-chrome
 brew cask install google-japanese-ime
 brew cask install intellij-idea-ce
@@ -57,6 +58,7 @@ brew cask install kitematic
 brew cask install pycharm
 brew cask install skype
 brew cask install shiftit
+brew cask install simbl
 brew cask install sourcetree
 brew cask install transmission
 brew cask install visual-studio-code
