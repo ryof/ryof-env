@@ -58,7 +58,6 @@ brew cask install kitematic
 brew cask install pycharm
 brew cask install skype
 brew cask install shiftit
-brew cask install simbl
 brew cask install sourcetree
 brew cask install transmission
 brew cask install visual-studio-code
