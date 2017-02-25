@@ -54,3 +54,6 @@ Thumbs.db
 # Temp files
 *.swp
 *~
+
+# Logs
+*.log
