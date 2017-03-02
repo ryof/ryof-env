@@ -3,7 +3,7 @@
 	email = ryo.furuyama@gmail.com
 
 [core]
-	excludesfiles = ~/.gitignore_global
+	excludesfile = ~/.gitignore_global
 	pager = less
 
 [credential]
