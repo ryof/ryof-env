@@ -5,6 +5,7 @@
 [core]
 	excludesfile = ~/.gitignore_global
 	pager = less
+  editor = vim
 
 [credential]
 	helper = osxkeychain
