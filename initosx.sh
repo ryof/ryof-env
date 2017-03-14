@@ -50,6 +50,7 @@ brew cask install firefox
 brew cask install flashlight
 brew cask install google-chrome
 brew cask install google-japanese-ime
+brew cask isntall hma-pro-vpn
 brew cask install intellij-idea-ce
 brew cask install iterm2
 brew cask install java
