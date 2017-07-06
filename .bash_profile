@@ -3,6 +3,7 @@ export LESS=' -R '
 export HISTSIZE=10000
 export HISTFILESIZE=$HISTSIZE
 export HISTCONTROL=ignoredups
+HISTTIMEFORMAT='%Y-%m-%dT%T%z '
 export JAVA_HOME=`/usr/libexec/java_home`
 
 alias awk='gawk'
