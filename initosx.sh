@@ -64,6 +64,7 @@ brew cask install sourcetree
 brew cask install transmission
 brew cask install visual-studio-code
 brew cask install vlc
+brew cask isntall xquartz
 
 # install Quick Look plugins (cf. https://github.com/sindresorhus/quick-look-plugins)
 brew cask install qlcolorcode
