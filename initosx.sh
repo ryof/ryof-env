@@ -1,15 +1,17 @@
 # set dotfiles
 if [ ! -e ~/.ryof-env ]; then
-	if git version > /dev/null 2>&1; then
-		git clone https://github.com/ryof/ryof-env ~/.ryof-env
-		ln -s ~/.ryof-env/.vimrc ~/.vimrc
-		ln -s ~/.ryof-env/.bash_profile ~/.bash_profile
-		ln -s ~/.ryof-env/.gitignore ~/.gitignore_global
-		ln -s ~/.ryof-env/.gitconfig ~/.gitconfig
-	else
-		echo 'After installing some tools, execute this script again.'
-		exit 0
-	fi
+  if git version > /dev/null 2>&1; then
+    git clone https://github.com/ryof/ryof-env ~/.ryof-env
+    ln -s ~/.ryof-env/.vimrc ~/.vimrc
+    ln -s ~/.ryof-env/.bash_profile ~/.bash_profile
+    mkdir -p ~/.config
+    ln -s ~/.ryof-env/fish ~/.config/fish
+    ln -s ~/.ryof-env/.gitignore ~/.gitignore_global
+    ln -s ~/.ryof-env/.gitconfig ~/.gitconfig
+  else
+    echo 'After installing some tools, execute this script again.'
+    exit 0
+  fi
 fi
 
 # get AppleID informations
@@ -18,17 +20,17 @@ echo
 
 # install google-cloud-sdk
 if [ ! -e ~/google-cloud-sdk ]; then
-	export CLOUDSDK_CORE_DISABLE_PROMPTS=1 
-	curl https://sdk.cloud.google.com | bash
-	mv ${HOME}/.bash_profile.backup .ryof-env/.bash_profile
+  export CLOUDSDK_CORE_DISABLE_PROMPTS=1
+  curl https://sdk.cloud.google.com | bash
+  mv ${HOME}/.bash_profile.backup .ryof-env/.bash_profile
 fi
 
 # install homebrew if not
 if type brew > /dev/null 2>&1; then
-	echo "brew exists"
+  echo "brew exists"
 else
-	sudo chown -R $(id -u):$(id -g) /usr/local/
-	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  sudo chown -R $(id -u):$(id -g) /usr/local/
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 brew update
 
@@ -38,6 +40,7 @@ brew tap homebrew/completions
 brew tap homebrew/services
 brew tap cloudfoundry/tap
 brew tap caskroom/versions
+brew tap fisherman/tap
 
 # install OSX applications
 export HOMEBREW_CASK_OPTS='--appdir=/Applications'
@@ -80,28 +83,32 @@ brew cask install suspicious-package
 
 # install brew packages
 brew install android-sdk && \
-	expect -c "
-	    set timeout -1
-	    spawn android update sdk --no-ui --filter platform-tools
+  expect -c "
+      set timeout -1
+      spawn android update sdk --no-ui --filter platform-tools
 
-	    expect {
-	        \"Do you accept the license\" {
-	            send \"y\n\"
-	            exp_continue
-	        }
-	        Downloading {
-	            exp_continue
-	        }
-	        Installing {
-	            exp_continue
-	        }
-	    }
-	"
+      expect {
+          \"Do you accept the license\" {
+              send \"y\n\"
+              exp_continue
+          }
+          Downloading {
+              exp_continue
+          }
+          Installing {
+              exp_continue
+          }
+      }
+  "
 brew install arp-scan
 brew install awscli
 brew install bash-completion
 brew install cf-cli
 brew install dos2unix
+brew install fish
+brew install fisherman && \
+  sudo echo '/usr/local/bin/fish' >> /etc/shells && \
+  chsh -s /usr/local/bin/fish
 brew install gawk
 brew install gcc
 brew install git
@@ -114,26 +121,26 @@ brew install jq
 brew install lua
 brew install mas
 brew install mysql && \
-	brew services start mysql
+  brew services start mysql
 brew install nkf
 brew install nmap
 brew install nodebrew && \
-	mkdir -p ~/.nodebrew/src && \
-	nodebrew install-binary latest && \
-	nodebrew use latest
+  mkdir -p ~/.nodebrew/src && \
+  nodebrew install-binary latest && \
+  nodebrew use latest
 brew install pyenv
 brew install rbenv
 brew install rename
 brew install scala && \
-	brew install sbt
+  brew install sbt
 brew install source-highlight
 brew install tree
 brew install typesafe-activator
 brew install vim --with-lua && \
-	curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh && \
-	mkdir -p ~/.vim/dein.vim && \
-	sh ./installer.sh ~/.vim/dein.vim && \
-	rm installer.sh
+  curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh && \
+  mkdir -p ~/.vim/dein.vim && \
+  sh ./installer.sh ~/.vim/dein.vim && \
+  rm installer.sh
 brew install watch
 brew install wget
 
@@ -148,9 +155,9 @@ brew install ruby-completion
 source ~/.bash_profile
 
 # install store applications
-mas signin --dialog ${apple_user_name} 
+mas signin --dialog ${apple_user_name}
 for id in $(mas list | cut -d' ' -f1); do
-	mas install ${id}
+  mas install ${id}
 done
 
 # Agree to the Xcode license
@@ -159,16 +166,16 @@ sudo xcrun cc
 # install latest stable ruby
 ruby_latest=$(rbenv install -l | grep -v - | tail -1)
 rbenv install ${ruby_latest} && \
-	rbenv global ${ruby_latest} && \
-	rbenv rehash
+  rbenv global ${ruby_latest} && \
+  rbenv rehash
 
 # install latest stable python 2 and 3
 python2_latest=$(pyenv install -l | grep -v - | tr -d ' ' | grep '^2' | tail -1)
 python3_latest=$(pyenv install -l | grep -v - | tr -d ' ' | grep '^3' | tail -1)
 pyenv install ${python2_latest} && \
-	pyenv install ${python3_latest} && \
-	pyenv global system ${python2_latest} ${python3_latest} && \
-	pyenv rehash
+  pyenv install ${python3_latest} && \
+  pyenv global system ${python2_latest} ${python3_latest} && \
+  pyenv rehash
 
 # change OSX settings
 defaults write com.apple.finder QLEnableTextSelection -bool true
