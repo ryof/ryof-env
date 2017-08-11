@@ -24,8 +24,8 @@ function fish_prompt
 end
 
 function prompt_git
-  set s ''
-  set branchName ''
+  set -l s ''
+  set -l branchName ''
   # Check if the current directory is in a Git repository.
   if git rev-parse --is-inside-work-tree > /dev/null ^&1
     # check if the current directory is in .git before running git checks
@@ -41,7 +41,7 @@ function prompt_git
         set s $s'!'
       end
       # Check for untracked files.
-      if [ -n (git ls-files --others --exclude-standard) ] # FIXME: test command bug?
+      if [ (git ls-files --others --exclude-standard | wc -l) -gt 0 ] # FIXME: test command bug?
         set s $s'?'
       end
       # Check for stashed files.
