@@ -107,7 +107,7 @@ brew install cf-cli
 brew install dos2unix
 brew install fish
 brew install fisherman && \
-  sudo echo '/usr/local/bin/fish' >> /etc/shells && \
+  echo '/usr/local/bin/fish' | sudo tee -a /etc/shells && \
   chsh -s /usr/local/bin/fish
 brew install gawk
 brew install gcc
@@ -128,6 +128,7 @@ brew install nodebrew && \
   mkdir -p ~/.nodebrew/src && \
   nodebrew install-binary latest && \
   nodebrew use latest
+brew install peco
 brew install pyenv
 brew install rbenv
 brew install rename
