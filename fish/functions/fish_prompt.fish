@@ -41,7 +41,7 @@ function prompt_git
         set s $s'!'
       end
       # Check for untracked files.
-      if [ (git ls-files --others --exclude-standard | wc -l) -gt 0 ] # FIXME: test command bug?
+      if [ (git ls-files --others --exclude-standard | wc -l) -gt 0 ]
         set s $s'?'
       end
       # Check for stashed files.
