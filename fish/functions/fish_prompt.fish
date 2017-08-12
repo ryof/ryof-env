@@ -3,7 +3,7 @@ function fish_prompt
     set -g VIRTUAL_ENV_DISABLE_PROMPT true
   end
   set_color yellow
-  printf '%s' (whoami)
+  printf '\n%s' (whoami)
   set_color white
   printf ' at '
 
