@@ -112,6 +112,7 @@ brew install fisherman && \
 brew install gawk
 brew install gcc
 brew install git
+brew install gnu-sed
 brew install go
 brew install gradle
 brew install iftop
