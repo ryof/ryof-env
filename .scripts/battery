@@ -1,4 +1,5 @@
 #!/bin/bash
+# copied from https://github.com/b4b4r07/dotfiles/blob/master/.tmux/bin/battery
 
 has() { type "$1" &>/dev/null; }
 
