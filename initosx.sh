@@ -1,3 +1,4 @@
+#!/bin/bash
 # set dotfiles
 if [ ! -e ~/.ryof-env ]; then
   if git version > /dev/null 2>&1; then
@@ -109,6 +110,7 @@ brew install fish
 brew install fisherman && \
   echo '/usr/local/bin/fish' | sudo tee -a /etc/shells && \
   chsh -s /usr/local/bin/fish
+brew install fping
 brew install gawk
 brew install gcc
 brew install git
@@ -129,6 +131,7 @@ brew install nodebrew && \
   mkdir -p ~/.nodebrew/src && \
   nodebrew install-binary latest && \
   nodebrew use latest
+brew install openvpn
 brew install peco
 brew install pyenv
 brew install rbenv
