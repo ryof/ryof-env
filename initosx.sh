@@ -195,6 +195,7 @@ defaults write -g InitialKeyRepeat -int 15
 defaults write -g com.apple.swipescrolldirection -bool false
 # Change system language to English, and Japanese
 defaults write -g AppleLanguages -array en ja
+defaults write -g AppleLocale -string "en_JP"
 # Select Dictionaries
 defaults write -g com.apple.DictionaryServices -dict-add "DCSActiveDictionaries" '("/Library/Dictionaries/Sanseido Super Daijirin.dictionary", "/Library/Dictionaries/Sanseido The WISDOM English-Japanese Japanese-English Dictionary.dictionary", "/System/Library/Frameworks/CoreServices.framework/Frameworks/DictionaryServices.framework/Resources/Wikipedia.wikipediadictionary", "/Library/Dictionaries/Oxford Thesaurus of English.dictionary", "/Library/Dictionaries/Oxford Dictionary of English.dictionary")'
 # TODO: Add some applications to LoginItem
