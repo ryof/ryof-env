@@ -4,6 +4,7 @@ if [ ! -e ~/.ryof-env ]; then
   if git version > /dev/null 2>&1; then
     git clone https://github.com/ryof/ryof-env ~/.ryof-env
     ln -s ~/.ryof-env/.vimrc ~/.vimrc
+    ln -s ~/.ryof-env/.tmux.conf ~/.tmux.conf
     ln -s ~/.ryof-env/.bash_profile ~/.bash_profile
     mkdir -p ~/.config
     ln -s ~/.ryof-env/fish ~/.config/fish
@@ -18,6 +19,9 @@ fi
 # get AppleID informations
 read -p "AppleID: " apple_user_name
 echo
+
+# install tpm
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # install google-cloud-sdk
 if [ ! -e ~/google-cloud-sdk ]; then
@@ -139,6 +143,7 @@ brew install rename
 brew install scala && \
   brew install sbt
 brew install source-highlight
+brew install tmux
 brew install tree
 brew install typesafe-activator
 brew install vim --with-lua && \
