@@ -2,6 +2,7 @@ alias fuck='networksetup -setairportpower en0 off; sleep 2; networksetup -setair
 alias less='less -N'
 alias ls='ls -G'
 alias sed='gsed'
+alias p8='ping 8.8.8.8'
 
 function fish_user_key_bindings
   bind \cr 'peco_select_history (commandline -b)'
