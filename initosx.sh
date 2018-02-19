@@ -143,6 +143,7 @@ brew install rename
 brew install scala && \
   brew install sbt
 brew install source-highlight
+brew install telnet
 brew install tmux
 brew install tree
 brew install typesafe-activator
