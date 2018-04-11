@@ -51,6 +51,9 @@ Thumbs.db
 /vendor/bundle
 /lib/bundler/man/
 
+# Node
+node_modules/
+
 # Python
 .python-version
 
