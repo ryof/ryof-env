@@ -119,7 +119,9 @@ brew install gawk
 brew install gcc
 brew install git
 brew install gnu-sed
+brew install gnupg
 brew install go
+brew install gpg-agent
 brew install gradle
 brew install iftop
 brew install imagemagick
@@ -137,6 +139,7 @@ brew install nodebrew && \
   nodebrew use latest
 brew install openvpn
 brew install peco
+brew install pinetry-mac
 brew install pyenv
 brew install rbenv
 brew install rename
@@ -188,6 +191,8 @@ pyenv install ${python2_latest} && \
   pyenv global system ${python2_latest} ${python3_latest} && \
   pyenv rehash
 
+echo "pinentry-program /usr/local/bin/pinentry-mac" >>~/.gnupg/gpg-agent.conf
+""
 # change OSX settings
 defaults write com.apple.finder QLEnableTextSelection -bool true
 defaults write com.apple.screencapture type jpg
