@@ -147,7 +147,9 @@ brew install scala && \
   brew install sbt
 brew install source-highlight
 brew install telnet
-brew install tmux
+brew install tmux && \
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && \
+  tmux source ~/.tmux.conf
 brew install tree
 brew install typesafe-activator
 brew install vim --with-lua && \
