@@ -1,0 +1,11 @@
+#!/bin/bash -e
+# prices from coinbase
+# default symbol is BTCUSDT
+
+symbol=${1:-BTCUSDT}
+price=$(curl -sSL https://api.binance.com/api/v3/ticker/price\?symbol=${symbol} | jq -r .price)
+if [ "$(echo "0.01 > ${price}" | bc -q)" -eq 1 ]; then
+  printf '%.3E' $price
+else
+  printf '%.3f' $price
+fi
