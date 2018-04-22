@@ -1,6 +1,9 @@
 #!/bin/bash
 
 declare -a nijushisekki=(
+  "#[bg=#bfeeef]#[fg=#0645ad]立春#[default]"
+  "#[bg=#c0f5e7]#[fg=#0645ad]雨水#[default]"
+  "#[bg=#c3fadf]#[fg=#0645ad]啓蟄#[default]"
   "#[bg=#c8fdd6]#[fg=#0645ad]春分#[default]"
   "#[bg=#cfffcf]#[fg=#0645ad]清明#[default]"
   "#[bg=#d6fdc8]#[fg=#0645ad]穀雨#[default]"
@@ -22,11 +25,17 @@ declare -a nijushisekki=(
   "#[bg=#c8d6fd]#[fg=#0645ad]冬至#[default]"
   "#[bg=#c3defa]#[fg=#0645ad]小寒#[default]"
   "#[bg=#c0e7f5]#[fg=#0645ad]大寒#[default]"
-  "#[bg=#bfeeef]#[fg=#0645ad]立春#[default]"
-  "#[bg=#c0f5e7]#[fg=#0645ad]雨水#[default]"
-  "#[bg=#c3fadf]#[fg=#0645ad]啓蟄#[default]"
 )
 declare -a shichijunikou=(
+  "東風解凍（こちこおりをとく）"
+  "黄鶯睍睆（うぐいすなく）"
+  "魚上氷（うおこおりをいずる）"
+  "土脉潤起（つちのしょううるおいおこる）"
+  "霞始靆（かすみはじめてたなびく）"
+  "草木萌動（そうもくめばえいずる）"
+  "蟄虫啓戸（すごもりむしとをひらく）"
+  "桃始笑（ももはじめてさく）"
+  "菜虫化蝶（なむしちょうとなる）"
   "雀始巣（すずめはじめてすくう）"
   "桜始開（さくらはじめてひらく）"
   "雷乃発声（かみなりすなわちこえをはっす）"
@@ -90,15 +99,6 @@ declare -a shichijunikou=(
   "款冬華（ふきのはなさく）"
   "水沢腹堅（さわみずこおりつめる）"
   "鶏始乳（にわとりはじめてとやにつく）"
-  "東風解凍（こちこおりをとく）"
-  "黄鶯睍睆（うぐいすなく）"
-  "魚上氷（うおこおりをいずる）"
-  "土脉潤起（つちのしょううるおいおこる）"
-  "霞始靆（かすみはじめてたなびく）"
-  "草木萌動（そうもくめばえいずる）"
-  "蟄虫啓戸（すごもりむしとをひらく）"
-  "桃始笑（ももはじめてさく）"
-  "菜虫化蝶（なむしちょうとなる）"
 )
 solar_form_tokyo_url='https://mgpn2.sakura.ne.jp/api/sun/position.cgi?json&lat=35.4122&lon=139.4130'
 ecliptic_longitude=$(curl -sSL "${solar_form_tokyo_url}" | jq .result.ecliptic_longitude)
