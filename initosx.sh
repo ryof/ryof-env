@@ -129,8 +129,7 @@ brew install jad
 brew install jq
 brew install lua
 brew install mas
-brew install mysql && \
-  brew services start mysql
+brew install mysql --client-only
 brew install nkf
 brew install nmap
 brew install nodebrew && \
