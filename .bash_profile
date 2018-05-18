@@ -5,20 +5,31 @@ export HISTFILESIZE=$HISTSIZE
 export HISTCONTROL=ignoredups
 HISTTIMEFORMAT='%Y-%m-%dT%T%z '
 export JAVA_HOME=`/usr/libexec/java_home`
+export LANG=en_US.UTF-8
 
 alias awk='gawk'
 alias fuck='networksetup -setairportpower en0 off; sleep 2; networksetup -setairportpower en0 on'
 alias less='less -N'
 alias ls='ls -G'
 alias githubconfig='git config --local user.name ryof; git config --local user.email "ryo.furuyama@gmail.com"'
+alias sed='gsed'
+alias p8='ping 8.8.8.8'
+
 function unzip () {
 	$(which unzip) -d ${1%.*} ${1}
 }
+function peco-select-history() {
+  READLINE_LINE=$(HISTTIMEFORMAT= history | tail -r | sed -e 's/^\s*[0-9]\+\s\+//' | awk '!a[$0]++' | peco --layout=bottom-up)
+  READLINE_POINT=${#READLINE_LINE}
+}
+
+bind -x '"\C-r": peco-select-history'
+
 # OSX-specific
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	export PATH=/usl/local/bin:/usr/local/sbin:$HOME/.rbenv/bin:$PATH
 	eval "$(rbenv init -)"
-	
+
 	export PYENV_ROOT=$HOME/.pyenv
 	export PATH=$PYENV_ROOT/bin:$PATH
 	eval "$(pyenv init -)"
@@ -40,10 +51,11 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 	source $HOME/google-cloud-sdk/path.bash.inc
 	source $HOME/google-cloud-sdk/completion.bash.inc
 
+	# other settings
 	GIT_PS1_SHOWDIRTYSTATE=true
 	export GOPATH=$HOME/.go
-
 	export LESSOPEN="| $(brew --prefix)/bin/src-hilite-lesspipe.sh %s"
+	source ~/.ryof-env/z/z.sh
 fi
 
 # prompt settings

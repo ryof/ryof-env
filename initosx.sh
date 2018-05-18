@@ -3,12 +3,13 @@
 if [ ! -e ~/.ryof-env ]; then
   if git version > /dev/null 2>&1; then
     git clone https://github.com/ryof/ryof-env ~/.ryof-env
+    git clone git://github.com/rupa/z ~/.ryof-env/z
     ln -s ~/.ryof-env/.vimrc ~/.vimrc
     ln -s ~/.ryof-env/.tmux.conf ~/.tmux.conf
     ln -s ~/.ryof-env/.bash_profile ~/.bash_profile
     mkdir -p ~/.config
-    ln -s ~/.ryof-env/fish ~/.config/fish
-    ln -s ~/.ryof-env/.gitignore ~/.gitignore_global
+    # ln -s ~/.ryof-env/fish ~/.config/fish
+    ln -s ~/.ryof-env/.gitignore_global ~/.gitignore_global
     ln -s ~/.ryof-env/.gitconfig ~/.gitconfig
   else
     echo 'After installing some tools, execute this script again.'
@@ -107,13 +108,17 @@ brew install android-sdk && \
   "
 brew install arp-scan
 brew install awscli
+brew install bash && \
+  echo '/usr/local/bin/bash' | sudo tee -a /etc/shells && \
+  chsh -s /usr/local/bin/bash
 brew install bash-completion
 brew install cf-cli
 brew install dos2unix
-brew install fish
-brew install fisherman && \
-  echo '/usr/local/bin/fish' | sudo tee -a /etc/shells && \
-  chsh -s /usr/local/bin/fish
+# NOTE: switched back to bash (May 18, 2018)
+# brew install fish
+# brew install fisherman && \
+#   echo '/usr/local/bin/fish' | sudo tee -a /etc/shells && \
+#   chsh -s /usr/local/bin/fish
 brew install fping
 brew install gawk
 brew install gcc
