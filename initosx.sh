@@ -7,6 +7,7 @@ if [ ! -e ~/.ryof-env ]; then
     ln -s ~/.ryof-env/.vimrc ~/.vimrc
     ln -s ~/.ryof-env/.tmux.conf ~/.tmux.conf
     ln -s ~/.ryof-env/.bash_profile ~/.bash_profile
+    ln -s ~/.bash_profile ~/.bashrc
     mkdir -p ~/.config
     # ln -s ~/.ryof-env/fish ~/.config/fish
     ln -s ~/.ryof-env/.gitignore_global ~/.gitignore_global
