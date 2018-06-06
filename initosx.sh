@@ -152,6 +152,7 @@ brew install scala && \
   brew install sbt
 brew install source-highlight
 brew install telnet
+brew install tfenv
 brew install tmux && \
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && \
   tmux source ~/.tmux.conf
