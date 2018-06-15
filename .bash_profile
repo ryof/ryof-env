@@ -54,6 +54,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 	# other settings
 	GIT_PS1_SHOWDIRTYSTATE=true
 	export GOPATH=$HOME/.go
+  export PATH=$PATH:$GOPATH/bin
 	export LESSOPEN="| $(brew --prefix)/bin/src-hilite-lesspipe.sh %s"
 	source ~/.ryof-env/z/z.sh
 fi
