@@ -136,7 +136,8 @@ PS1+="\[${white}\] at ";
 PS1+="\[${hostStyle}\]\h"; # host
 PS1+="\[${white}\] in ";
 PS1+="\[${blue}\]\w"; # working directory full path
-PS1+="\$(prompt_git \"\[${white}\] on \[${violet}\]\" \"\[${yellow}\]\")"; # Git repository details
+PS1+="\$(prompt_git \"\[${white}\] on \[${violet}\]\" \"\[${yellow}\]\") "; # Git repository details
+PS1+="\[${white}\]- \t";
 PS1+="\n";
 PS1+="\[${white}\]$(echo -e '\xF0\x9F\x91\xba')  \[${reset}\]"; # `$` (and reset color)
 export PS1;
