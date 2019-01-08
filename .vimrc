@@ -48,6 +48,7 @@ set expandtab
 set softtabstop=0
 set incsearch
 set backspace=indent,eol,start
+set encoding=utf-8
 
 " auto bracketing
 inoremap { {}<LEFT>
