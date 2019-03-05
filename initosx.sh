@@ -114,6 +114,7 @@ brew install bash && \
   chsh -s /usr/local/bin/bash
 brew install bash-completion
 brew install cf-cli
+brew install coreutils
 brew install dos2unix
 # NOTE: switched back to bash (May 18, 2018)
 # brew install fish
