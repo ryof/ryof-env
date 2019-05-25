@@ -14,6 +14,7 @@ alias ls='ls -G'
 alias githubconfig='git config --local user.name ryof; git config --local user.email "ryo.furuyama@gmail.com"'
 alias sed='gsed'
 alias p8='ping 8.8.8.8'
+alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 
 function unzip () {
 	$(which unzip) -d ${1%.*} ${1}
