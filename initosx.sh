@@ -129,12 +129,14 @@ brew install gnu-sed
 brew install gnupg
 brew install go
 brew install gpg-agent
+brew install gpg2
 brew install gradle
 brew install iftop
 brew install imagemagick
 brew install jad
 brew install jq
 brew install lua
+brew install pinentry-mac
 brew install mas
 brew install mysql --client-only
 brew install nkf

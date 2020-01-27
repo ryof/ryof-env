@@ -1,6 +1,7 @@
 [user]
 	name = ryof
 	email = ryo.furuyama@gmail.com
+	signingkey = 50119A2F9F90EB22
 
 [core]
 	excludesfile = ~/.gitignore_global
@@ -15,3 +16,6 @@
 
 [alias]
   commit = commit --no-status
+
+[gpg]
+	program = gpg
