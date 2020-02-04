@@ -7,14 +7,15 @@ HISTTIMEFORMAT='%Y-%m-%dT%T%z '
 export JAVA_HOME=`/usr/libexec/java_home`
 export LANG=en_US.UTF-8
 
-alias awk='gawk'
 alias fuck='networksetup -setairportpower en0 off; sleep 2; networksetup -setairportpower en0 on'
 alias less='less -N'
 alias ls='ls -G'
 alias githubconfig='git config --local user.name ryof; git config --local user.email "ryo.furuyama@gmail.com"'
-alias sed='gsed'
 alias p8='ping 8.8.8.8'
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+if [[ -x $(which gawk) ]]; then alias awk='gawk'; fi
+if [[ -x $(which colordiff) ]]; then alias diff='colordiff -u'; fi
+if [[ -x $(which gsed) ]]; then alias sed='gsed'; fi
 
 function unzip () {
 	$(which unzip) -d ${1%.*} ${1}
