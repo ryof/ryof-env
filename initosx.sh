@@ -154,6 +154,7 @@ brew install rbenv
 brew install rename
 brew install scala && \
   brew install sbt
+brew install shellcheck
 brew install source-highlight
 brew install telnet
 brew install tfenv
