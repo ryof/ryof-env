@@ -59,7 +59,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   export ANDROID_HOME="/usr/local/share/android-sdk"
   export PATH=$PATH:$GOPATH/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin
 	export LESSOPEN="| $(brew --prefix)/bin/src-hilite-lesspipe.sh %s"
-	source ~/.ryof-env/z/z.sh
 fi
 
 # prompt settings
