@@ -8,10 +8,12 @@ if [ ! -e ~/.ryof-env ]; then
     ln -s ~/.ryof-env/.tmux.conf ~/.tmux.conf
     ln -s ~/.ryof-env/.bash_profile ~/.bash_profile
     ln -s ~/.bash_profile ~/.bashrc
-    mkdir -p ~/.config
+    # mkdir -p ~/.config
     # ln -s ~/.ryof-env/fish ~/.config/fish
     ln -s ~/.ryof-env/.gitignore_global ~/.gitignore_global
     ln -s ~/.ryof-env/.gitconfig ~/.gitconfig
+    mkdir -p ~/.gnupg
+    ln -s ~/.ryof-env/gpg-agent.conf ~/.gnupg/gpg-agent.conf
   else
     echo 'After installing some tools, execute this script again.'
     exit 0
