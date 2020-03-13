@@ -34,6 +34,9 @@ if [ ! -e ~/google-cloud-sdk ]; then
   mv ${HOME}/.bash_profile.backup .ryof-env/.bash_profile
 fi
 
+curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+sudo installer -pkg AWSCLIV2.pkg -target /
+
 # install homebrew if not
 if type brew > /dev/null 2>&1; then
   echo "brew exists"
@@ -55,6 +58,7 @@ brew tap fisherman/tap
 export HOMEBREW_CASK_OPTS='--appdir=/Applications'
 brew cask install appcleaner
 brew cask install atom
+brew cask install aws-vault
 brew cask install datagrip
 brew cask install docker
 brew cask install eclipse-platform
@@ -110,7 +114,6 @@ brew install android-sdk && \
       }
   "
 brew install arp-scan
-brew install awscli
 brew install bash && \
   echo '/usr/local/bin/bash' | sudo tee -a /etc/shells && \
   chsh -s /usr/local/bin/bash
