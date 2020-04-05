@@ -59,6 +59,7 @@ export HOMEBREW_CASK_OPTS='--appdir=/Applications'
 brew cask install appcleaner
 brew cask install atom
 brew cask install aws-vault
+brew cask install authy
 brew cask install datagrip
 brew cask install docker
 brew cask install eclipse-platform
