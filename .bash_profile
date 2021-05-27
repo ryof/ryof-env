@@ -29,7 +29,8 @@ bind -x '"\C-r": peco-select-history'
 
 # OSX-specific
 if [[ "$OSTYPE" == "darwin"* ]]; then
-	export PATH=/usr/local/opt/openssl/bin:/usr/local/bin:/usr/local/sbin:$HOME/.rbenv/bin:$PATH:~/.nodebrew/current/bin
+	export PATH=/usr/local/opt/openssl/bin:/usr/local/bin:/usr/local/sbin:$HOME/.rbenv/bin:$PATH:~/.nodebrew/current/bin:$HOME/.dotnet
+  export DOTNET_ROOT=$HOME/.dotnet
 	eval "$(rbenv init -)"
 
 	export PYENV_ROOT=$HOME/.pyenv
