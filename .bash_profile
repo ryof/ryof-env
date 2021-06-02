@@ -3,7 +3,7 @@ export LESS=' -R '
 export HISTSIZE=10000
 export HISTFILESIZE=$HISTSIZE
 export HISTCONTROL=ignoredups
-HISTTIMEFORMAT='%Y-%m-%dT%T%z '
+export HISTTIMEFORMAT='%Y-%m-%dT%T%z '
 export JAVA_HOME=`/usr/libexec/java_home`
 export LANG=en_US.UTF-8
 
