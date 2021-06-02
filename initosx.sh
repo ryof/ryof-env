@@ -21,8 +21,11 @@ if [ ! -e ~/.ryof-env ]; then
 fi
 
 # get AppleID informations
-read -rp "AppleID: " apple_user_name
-echo
+# unable to be automated because of this issue: https://github.com/mas-cli/mas/issues/164
+if [ ! "${CI}" ]; then
+  read -rp "AppleID: " apple_user_name
+  echo
+fi
 
 # install tpm
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
