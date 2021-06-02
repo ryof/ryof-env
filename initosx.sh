@@ -185,7 +185,7 @@ brew install gem-completion
 brew install maven-completion
 brew install ruby-completion
 
-# shellcheck source=../.bash_profile
+# shellcheck disable=SC1091
 source "${HOME}"/.bash_profile
 
 # install store applications
