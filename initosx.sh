@@ -33,7 +33,7 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # install google-cloud-sdk
 if [ ! -e ~/google-cloud-sdk ]; then
   export CLOUDSDK_CORE_DISABLE_PROMPTS=1
-  curl https://sdk.cloud.google.com | bash
+  curl https://sdk.cloud.google.com | bash &> /dev/null
   mv "${HOME}"/.bash_profile.backup .ryof-env/.bash_profile
 fi
 
