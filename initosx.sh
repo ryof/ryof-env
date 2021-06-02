@@ -21,7 +21,7 @@ if [ ! -e ~/.ryof-env ]; then
 fi
 
 # get AppleID informations
-read -p "AppleID: " apple_user_name
+read -rp "AppleID: " apple_user_name
 echo
 
 # install tpm
@@ -31,7 +31,7 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 if [ ! -e ~/google-cloud-sdk ]; then
   export CLOUDSDK_CORE_DISABLE_PROMPTS=1
   curl https://sdk.cloud.google.com | bash
-  mv ${HOME}/.bash_profile.backup .ryof-env/.bash_profile
+  mv "${HOME}"/.bash_profile.backup .ryof-env/.bash_profile
 fi
 
 curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
@@ -41,7 +41,7 @@ sudo installer -pkg AWSCLIV2.pkg -target /
 if type brew > /dev/null 2>&1; then
   echo "brew exists"
 else
-  sudo chown -R $(id -u):$(id -g) /usr/local/
+  sudo chown -R "$(id -u)":"$(id -g)" /usr/local/
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 brew update
@@ -185,12 +185,13 @@ brew install gem-completion
 brew install maven-completion
 brew install ruby-completion
 
-source ~/.bash_profile
+# shellcheck source=../.bash_profile
+source "${HOME}"/.bash_profile
 
 # install store applications
-mas signin --dialog ${apple_user_name}
+mas signin --dialog "${apple_user_name}"
 for id in $(mas list | cut -d' ' -f1); do
-  mas install ${id}
+  mas install "${id}"
 done
 
 # Agree to the Xcode license
@@ -198,16 +199,16 @@ sudo xcrun cc
 
 # install latest stable ruby
 ruby_latest=$(rbenv install -l | grep -v - | tail -1)
-rbenv install ${ruby_latest} && \
-  rbenv global ${ruby_latest} && \
+rbenv install "${ruby_latest}" && \
+  rbenv global "${ruby_latest}" && \
   rbenv rehash
 
 # install latest stable python 2 and 3
 python2_latest=$(pyenv install -l | grep -v - | tr -d ' ' | grep '^2' | tail -1)
 python3_latest=$(pyenv install -l | grep -v - | tr -d ' ' | grep '^3' | tail -1)
-pyenv install ${python2_latest} && \
-  pyenv install ${python3_latest} && \
-  pyenv global system ${python2_latest} ${python3_latest} && \
+pyenv install "${python2_latest}" && \
+  pyenv install "${python3_latest}" && \
+  pyenv global system "${python2_latest}" "${python3_latest}" && \
   pyenv rehash
 
 echo "pinentry-program /usr/local/bin/pinentry-mac" >>~/.gnupg/gpg-agent.conf
@@ -215,7 +216,7 @@ echo "pinentry-program /usr/local/bin/pinentry-mac" >>~/.gnupg/gpg-agent.conf
 # change OSX settings
 defaults write com.apple.finder QLEnableTextSelection -bool true
 defaults write com.apple.screencapture type jpg
-defaults write com.apple.screencapture “disable-shadow” -bool yes
+defaults write com.apple.screencapture disable-shadow -bool yes
 defaults write com.apple.screencapture name ss
 defaults write com.apple.screencapture location ~/ss/
 # fast input
@@ -241,7 +242,7 @@ defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 65 "<dic
 defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 9 "<dict><key>enabled</key><true/><key>value</key><dict><key>parameters</key><array><integer>96</integer><integer>50</integer><integer>1572864</integer></array><key>type</key><string>standard</string></dict></dict>"
 # Remap CapsLock key to Control
 keyboardid=$(ioreg -n IOHIDKeyboard -r | grep -E 'VendorID"|ProductID' | awk '{ print $4 }' | paste -s -d'-\n' -)'-0'
-defaults -currentHost write -g com.apple.keyboard.modifiermapping.${keyboardid} -array '<dict><key>HIDKeyboardModifierMappingDst</key></dict><integer>2</integer> <key>HIDKeyboardModifierMappingSrc</key><key>0</key>'
+defaults -currentHost write -g com.apple.keyboard.modifiermapping."${keyboardid}" -array '<dict><key>HIDKeyboardModifierMappingDst</key></dict><integer>2</integer> <key>HIDKeyboardModifierMappingSrc</key><key>0</key>'
 
 # Some Dock settings
 # move Dock to left
