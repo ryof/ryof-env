@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -eux
 # set dotfiles
 if [ ! -e ~/.ryof-env ]; then
   if git version > /dev/null 2>&1; then
@@ -6,12 +6,12 @@ if [ ! -e ~/.ryof-env ]; then
     git clone git://github.com/rupa/z ~/.ryof-env/z
     ln -s ~/.ryof-env/.vimrc ~/.vimrc
     ln -s ~/.ryof-env/.tmux.conf ~/.tmux.conf
-    ln -s ~/.ryof-env/.bash_profile ~/.bash_profile
-    ln -s ~/.bash_profile ~/.bashrc
+    ln -sf ~/.ryof-env/.bash_profile ~/.bash_profile
+    ln -sf ~/.bash_profile ~/.bashrc
     # mkdir -p ~/.config
     # ln -s ~/.ryof-env/fish ~/.config/fish
     ln -s ~/.ryof-env/.gitignore_global ~/.gitignore_global
-    ln -s ~/.ryof-env/.gitconfig ~/.gitconfig
+    ln -sf ~/.ryof-env/.gitconfig ~/.gitconfig
     mkdir -p ~/.gnupg
     ln -s ~/.ryof-env/gpg-agent.conf ~/.gnupg/gpg-agent.conf
   else
