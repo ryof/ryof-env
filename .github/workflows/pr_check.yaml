@@ -4,7 +4,7 @@ on:
     branches:
       - master
 jobs:
-  InitOSX:
+  ShellCheck:
     runs-on: macos-latest
     steps:
       - name: Checkout
@@ -13,4 +13,10 @@ jobs:
         run: |
           brew install shellcheck
           shellcheck ./initosx.sh
-
+  InitOSX:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Execute
+        run: ./initosx.sh

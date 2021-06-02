@@ -189,10 +189,13 @@ brew install ruby-completion
 source "${HOME}"/.bash_profile
 
 # install store applications
-mas signin --dialog "${apple_user_name}"
-for id in $(mas list | cut -d' ' -f1); do
-  mas install "${id}"
-done
+# unable to be automated because of this issue: https://github.com/mas-cli/mas/issues/164
+if [ ! "${CI}" ]; then
+  mas signin --dialog "${apple_user_name}"
+  for id in $(mas list | cut -d' ' -f1); do
+    mas install "${id}"
+  done
+fi
 
 # Agree to the Xcode license
 sudo xcrun cc
