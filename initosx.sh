@@ -49,54 +49,46 @@ else
 fi
 brew update
 
-# install brew packages
-brew tap homebrew/binary
-brew tap homebrew/completions
-brew tap homebrew/services
-brew tap cloudfoundry/tap
-brew tap caskroom/versions
-brew tap fisherman/tap
-
 # install OSX applications
 export HOMEBREW_CASK_OPTS='--appdir=/Applications'
-brew cask install appcleaner
-brew cask install atom
-brew cask install aws-vault
-brew cask install authy
-brew cask install datagrip
-brew cask install docker
-brew cask install eclipse-platform
-brew cask install firefox
-brew cask install flashlight
-brew cask install google-chrome
-brew cask install google-japanese-ime
-brew cask isntall hma-pro-vpn
-brew cask install intellij-idea-ce
-brew cask install iterm2
-brew cask install java
-brew cask install kindle
-brew cask install kitematic
-brew cask install pycharm
-brew cask install skype
-brew cask install shiftit
-brew cask install simbl
-brew cask install sourcetree
-brew cask install transmission
-brew cask install visual-studio-code
-brew cask install vlc
-brew cask isntall xquartz
+brew install appcleaner --cask
+brew install atom --cask
+brew install aws-vault --cask
+brew install authy --cask
+brew install datagrip --cask
+brew install docker --cask
+brew install eclipse-platform --cask
+brew install firefox --cask
+brew install flashlight --cask
+brew install google-chrome --cask
+brew install google-japanese-ime --cask
+brew install hma-pro-vpn --cask
+brew install intellij-idea-ce --cask
+brew install iterm2 --cask
+brew install java --cask
+brew install kindle --cask
+brew install kitematic --cask
+brew install pycharm --cask
+brew install skype --cask
+brew install shiftit --cask
+brew install simbl --cask
+brew install sourcetree --cask
+brew install transmission --cask
+brew install visual-studio-code --cask
+brew install vlc --cask
+brew install xquartz --cask
 
 # install Quick Look plugins (cf. https://github.com/sindresorhus/quick-look-plugins)
-brew cask install qlcolorcode
-brew cask install qlstephen
-brew cask install qlmarkdown
-brew cask install quicklook-json
-brew cask install qlprettypatch
-brew cask install quicklook-csv
-brew cask install betterzipql
-brew cask install qlimagesize
-brew cask install webpquicklook
-brew cask install suspicious-package
+brew install qlcolorcode --cask
+brew install qlstephen --cask
+brew install qlmarkdown --cask
+brew install quicklook-json --cask
+brew install qlprettypatch --cask
+brew install quicklook-csv --cask
+brew install betterzipql --cask
+brew install qlimagesize --cask
+brew install webpquicklook --cask
+brew install suspicious-package --cask
 
 # install brew packages
 brew install android-sdk && \
