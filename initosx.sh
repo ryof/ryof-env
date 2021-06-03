@@ -59,19 +59,16 @@ brew install datagrip --cask
 brew install docker --cask
 brew install eclipse-platform --cask
 brew install firefox --cask
-brew install flashlight --cask
 brew install google-chrome --cask
 brew install google-japanese-ime --cask
 brew install hma-pro-vpn --cask
 brew install intellij-idea-ce --cask
 brew install iterm2 --cask
-brew install java --cask
 brew install kindle --cask
 brew install kitematic --cask
 brew install pycharm --cask
 brew install skype --cask
 brew install shiftit --cask
-brew install simbl --cask
 brew install sourcetree --cask
 brew install transmission --cask
 brew install visual-studio-code --cask
@@ -85,7 +82,6 @@ brew install qlmarkdown --cask
 brew install quicklook-json --cask
 brew install qlprettypatch --cask
 brew install quicklook-csv --cask
-brew install betterzipql --cask
 brew install qlimagesize --cask
 brew install webpquicklook --cask
 brew install suspicious-package --cask
