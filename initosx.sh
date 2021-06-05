@@ -93,24 +93,7 @@ brew install webpquicklook --cask
 brew install suspicious-package --cask
 
 # install brew packages
-brew install android-sdk && \
-  expect -c "
-      set timeout -1
-      spawn android update sdk --no-ui --filter platform-tools
-
-      expect {
-          \"Do you accept the license\" {
-              send \"y\n\"
-              exp_continue
-          }
-          Downloading {
-              exp_continue
-          }
-          Installing {
-              exp_continue
-          }
-      }
-  "
+brew install android-sdk
 brew install arp-scan
 brew install bash && \
   echo '/usr/local/bin/bash' | sudo tee -a /etc/shells && \
