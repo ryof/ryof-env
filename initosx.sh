@@ -110,7 +110,6 @@ brew install bash && \
   echo '/usr/local/bin/bash' | sudo tee -a /etc/shells && \
   if [ ! "${CI}" ]; then chsh -s /usr/local/bin/bash; fi
 brew install bash-completion
-brew install cf-cli
 brew install colordiff
 brew install coreutils
 brew install dos2unix
@@ -154,7 +153,6 @@ brew install tmux && \
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && \
   tmux source ~/.tmux.conf
 brew install tree
-brew install typesafe-activator
 brew install vim --with-lua && \
   curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh && \
   mkdir -p ~/.vim/dein.vim && \
