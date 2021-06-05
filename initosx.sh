@@ -109,7 +109,6 @@ brew install git
 brew install gnu-sed
 brew install gnupg
 brew install go
-brew install gpg-agent
 brew install gpg2
 brew install gradle
 brew install iftop
