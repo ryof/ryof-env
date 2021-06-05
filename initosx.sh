@@ -108,17 +108,12 @@ brew install android-sdk && \
 brew install arp-scan
 brew install bash && \
   echo '/usr/local/bin/bash' | sudo tee -a /etc/shells && \
-  chsh -s /usr/local/bin/bash
+  if [ ! "${CI}" ]; then chsh -s /usr/local/bin/bash; fi
 brew install bash-completion
 brew install cf-cli
 brew install colordiff
 brew install coreutils
 brew install dos2unix
-# NOTE: switched back to bash (May 18, 2018)
-# brew install fish
-# brew install fisherman && \
-#   echo '/usr/local/bin/fish' | sudo tee -a /etc/shells && \
-#   chsh -s /usr/local/bin/fish
 brew install fping
 brew install gawk
 brew install gcc
