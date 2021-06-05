@@ -40,6 +40,12 @@ fi
 curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
 sudo installer -pkg AWSCLIV2.pkg -target /
 
+# uninstall pre-installed formulae (Github Actions only)
+if [ "${CI}" ]; then
+  #shellcheck disable=SC2046
+  brew uninstall --force $(brew list)
+fi
+
 # install homebrew if not
 if type brew > /dev/null 2>&1; then
   echo "brew exists"
