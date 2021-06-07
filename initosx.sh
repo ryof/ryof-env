@@ -118,7 +118,7 @@ brew install jq
 brew install lua
 brew install pinentry-mac
 brew install mas
-brew install mysql --client-only
+brew install mysql-client
 brew install nkf
 brew install nmap
 brew install nodebrew && \
