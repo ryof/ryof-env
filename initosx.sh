@@ -127,7 +127,7 @@ brew install nodebrew && \
   nodebrew use latest
 brew install openvpn
 brew install peco
-brew install pinetry-mac
+brew install pinentry-mac
 brew install pyenv
 brew install rbenv
 brew install rename
