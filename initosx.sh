@@ -141,7 +141,7 @@ brew install tmux && \
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && \
   tmux source ~/.tmux.conf
 brew install tree
-brew install vim --with-lua && \
+brew install vim && \
   curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh && \
   mkdir -p ~/.vim/dein.vim && \
   sh ./installer.sh ~/.vim/dein.vim && \
