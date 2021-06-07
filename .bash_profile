@@ -1,10 +1,13 @@
+# shellcheck shell=bash
+# shellcheck disable=SC1091
 export LESSCHARSET='utf-8'
 export LESS=' -R '
 export HISTSIZE=10000
 export HISTFILESIZE=$HISTSIZE
 export HISTCONTROL=ignoredups
 export HISTTIMEFORMAT='%Y-%m-%dT%T%z '
-export JAVA_HOME=`/usr/libexec/java_home`
+JAVA_HOME=$(/usr/libexec/java_home)
+export JAVA_HOME
 export LANG=en_US.UTF-8
 
 alias fuck='networksetup -setairportpower en0 off; sleep 2; networksetup -setairportpower en0 on'
@@ -18,10 +21,10 @@ if [[ -x $(which colordiff) ]]; then alias diff='colordiff -u'; fi
 if [[ -x $(which gsed) ]]; then alias sed='gsed'; fi
 
 function unzip () {
-  $(which unzip) -d ${1%.*} ${1}
+  $(which unzip) -d "${1%.*}" "${1}"
 }
 function peco-select-history() {
-  READLINE_LINE=$(HISTTIMEFORMAT= history | tail -r | sed -e 's/^\s*[0-9]\+\s\+//' | awk '!a[$0]++' | peco --layout=bottom-up)
+  READLINE_LINE=$(HISTTIMEFORMAT=' ' history | tail -r | sed -e 's/^\s*[0-9]\+\s\+//' | awk '!a[$0]++' | peco --layout=bottom-up)
   READLINE_POINT=${#READLINE_LINE}
 }
 
@@ -43,24 +46,26 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   export HOMEBREW_CASK_OPTS='--appdir=/Applications'
 
   # completion settings
-  source $(brew --prefix)/etc/bash_completion.d/git-prompt.sh
-  source $(brew --prefix)/etc/bash_completion.d/git-completion.bash
-  if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
+  source "$(brew --prefix)/etc/bash_completion.d/git-prompt.sh"
+  source "$(brew --prefix)/etc/bash_completion.d/git-completion.bash"
+  if [ -f "$(brew --prefix)/etc/bash_completion" ]; then
+    . "$(brew --prefix)/etc/bash_completion"
   fi
   complete -C "$(brew --prefix)/bin/aws_completer" aws
 
   # Google Cloud SDK settings
-  source $HOME/google-cloud-sdk/path.bash.inc
-  source $HOME/google-cloud-sdk/completion.bash.inc
+  source "${HOME}/google-cloud-sdk/path.bash.inc"
+  source "${HOME}/google-cloud-sdk/completion.bash.inc"
 
   # other settings
-  GIT_PS1_SHOWDIRTYSTATE=true
-  export GOPATH=$HOME/.go
+	export  GIT_PS1_SHOWDIRTYSTATE=true
+  export GOPATH=${HOME}/.go
   export ANDROID_HOME="/usr/local/share/android-sdk"
   export PATH=$PATH:$GOPATH/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin
-  export LESSOPEN="| $(brew --prefix)/bin/src-hilite-lesspipe.sh %s"
-  export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+  LESSOPEN="| $(brew --prefix)/bin/src-hilite-lesspipe.sh %s"
+	export LESSOPEN
+  SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+	export SSH_AUTH_SOCK
 fi
 
 # prompt settings
@@ -71,17 +76,17 @@ prompt_git() {
   local branchName='';
 
   # Check if the current directory is in a Git repository.
-  if [ $(git rev-parse --is-inside-work-tree &>/dev/null; echo "${?}") == '0' ]; then
+  if [ "$(git rev-parse --is-inside-work-tree &>/dev/null; echo "${?}")" == '0' ]; then
     # check if the current directory is in .git before running git checks
     if [ "$(git rev-parse --is-inside-git-dir 2> /dev/null)" == 'false' ]; then
       # Ensure the index is up to date.
       git update-index --really-refresh -q &>/dev/null;
       # Check for uncommitted changes in the index.
-      if ! $(git diff --quiet --ignore-submodules --cached); then
+      if ! "$(git diff --quiet --ignore-submodules --cached)"; then
         s+='+';
       fi;
       # Check for unstaged changes.
-      if ! $(git diff-files --quiet --ignore-submodules --); then
+      if ! "$(git diff-files --quiet --ignore-submodules --)"; then
         s+='!';
       fi;
       # Check for untracked files.
@@ -89,7 +94,7 @@ prompt_git() {
         s+='?';
       fi;
       # Check for stashed files.
-      if $(git rev-parse --verify refs/stash &>/dev/null); then
+      if "$(git rev-parse --verify refs/stash &>/dev/null)"; then
         s+='$';
       fi;
     fi;
