@@ -116,7 +116,6 @@ brew install imagemagick
 brew install jad
 brew install jq
 brew install lua
-brew install pinentry-mac
 brew install mas
 brew install mysql-client
 brew install nkf
