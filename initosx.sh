@@ -150,9 +150,6 @@ brew install watch
 brew install wget
 
 # install completions
-brew install docker-completion
-brew install docker-compose-completion
-brew install docker-machine-completion
 brew install gem-completion
 brew install maven-completion
 brew install ruby-completion
