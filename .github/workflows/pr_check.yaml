@@ -12,7 +12,7 @@ jobs:
       - name: Shell Check
         run: |
           brew install shellcheck
-          shellcheck ./initosx.sh
+          shellcheck ./initosx.sh ./bash_profile
   InitOSX:
     runs-on: macos-latest
     steps:
