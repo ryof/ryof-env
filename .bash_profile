@@ -41,8 +41,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   export GOPATH=${HOME}/.go
   export PATH=$OPENSSL_PATH:$BREW_PATH:$RBENV_ROOT/bin:$PYENV_ROOT/bin:$NODEBREW_PATH:$GOPATH/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin:$PATH
 
-  eval "$(rbenv init -)"
-  eval "$(pyenv init --path)"
+  if [[ -x $(which rbenv) ]]; then eval "$(rbenv init -)"; fi
+  if [[ -x $(which pyenv) ]]; then eval "$(pyenv init --path)"; fi
 
   # brew options
   export HOMEBREW_CASK_OPTS='--appdir=/Applications'
@@ -56,14 +56,16 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   complete -C "$(brew --prefix)/bin/aws_completer" aws
 
   # Google Cloud SDK settings
-  source "${HOME}/google-cloud-sdk/path.bash.inc"
-  source "${HOME}/google-cloud-sdk/completion.bash.inc"
+  if [[ -x $(which gcloud) ]]; then
+    source "${HOME}/google-cloud-sdk/path.bash.inc"
+    source "${HOME}/google-cloud-sdk/completion.bash.inc"
+  fi
 
   # other settings
   export  GIT_PS1_SHOWDIRTYSTATE=true
   LESSOPEN="| $(brew --prefix)/bin/src-hilite-lesspipe.sh %s"
   export LESSOPEN
-  SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+  if [[ -x $(which gpgconf) ]]; then SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket); fi
   export SSH_AUTH_SOCK
 fi
 
