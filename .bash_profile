@@ -32,15 +32,18 @@ bind -x '"\C-r": peco-select-history'
 
 # OSX-specific
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  export PATH=/usr/local/opt/openssl/bin:/usr/local/bin:/usr/local/sbin:$HOME/.rbenv/bin:$PATH:~/.nodebrew/current/bin:$HOME/.dotnet
-  export DOTNET_ROOT=$HOME/.dotnet
-  eval "$(rbenv init -)"
-
+  export OPENSSL_PATH=/usr/local/opt/openssl/bin
+  export BREW_PATH=/usr/local/bin:/usr/local/sbin
+  export RBENV_ROOT=$HOME/.rbenv
   export PYENV_ROOT=$HOME/.pyenv
-  export PATH=$PYENV_ROOT/bin:$PATH
-  eval "$(pyenv init --path)"
+  export NODEBREW_PATH=$HOME/.nodebrew/current/bin
+  export ANDROID_HOME="/usr/local/share/android-sdk"
+  export GOPATH=${HOME}/.go
+  export PATH=$OPENSSL_PATH:$BREW_PATH:$RBENV_ROOT/bin:$PYENV_ROOT/bin:$NODEBREW_PATH:$GOPATH/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin:$HOME/.dotnet:$PATH
+  export DOTNET_ROOT=$HOME/.dotnet
 
-  export PATH=$PATH:~/.nodebrew/current/bin:/usr/local/lib/node_modules
+  eval "$(rbenv init -)"
+  eval "$(pyenv init --path)"
 
   # brew options
   export HOMEBREW_CASK_OPTS='--appdir=/Applications'
@@ -59,9 +62,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
   # other settings
   export  GIT_PS1_SHOWDIRTYSTATE=true
-  export GOPATH=${HOME}/.go
-  export ANDROID_HOME="/usr/local/share/android-sdk"
-  export PATH=$PATH:$GOPATH/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin
   LESSOPEN="| $(brew --prefix)/bin/src-hilite-lesspipe.sh %s"
   export LESSOPEN
   SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
