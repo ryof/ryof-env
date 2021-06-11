@@ -32,9 +32,9 @@ bind -x '"\C-r": peco-select-history'
 
 # OSX-specific
 if [[ "$OSTYPE" == "darwin"* ]]; then
-	export PATH=/usr/local/opt/openssl/bin:/usr/local/bin:/usr/local/sbin:$HOME/.rbenv/bin:$PATH:~/.nodebrew/current/bin:$HOME/.dotnet
+  export PATH=/usr/local/opt/openssl/bin:/usr/local/bin:/usr/local/sbin:$HOME/.rbenv/bin:$PATH:~/.nodebrew/current/bin:$HOME/.dotnet
   export DOTNET_ROOT=$HOME/.dotnet
-	eval "$(rbenv init -)"
+  eval "$(rbenv init -)"
 
   export PYENV_ROOT=$HOME/.pyenv
   export PATH=$PYENV_ROOT/bin:$PATH
@@ -58,14 +58,14 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   source "${HOME}/google-cloud-sdk/completion.bash.inc"
 
   # other settings
-	export  GIT_PS1_SHOWDIRTYSTATE=true
+  export  GIT_PS1_SHOWDIRTYSTATE=true
   export GOPATH=${HOME}/.go
   export ANDROID_HOME="/usr/local/share/android-sdk"
   export PATH=$PATH:$GOPATH/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin
   LESSOPEN="| $(brew --prefix)/bin/src-hilite-lesspipe.sh %s"
-	export LESSOPEN
+  export LESSOPEN
   SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-	export SSH_AUTH_SOCK
+  export SSH_AUTH_SOCK
 fi
 
 # prompt settings
