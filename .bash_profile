@@ -39,8 +39,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   export NODEBREW_PATH=$HOME/.nodebrew/current/bin
   export ANDROID_HOME="/usr/local/share/android-sdk"
   export GOPATH=${HOME}/.go
-  export PATH=$OPENSSL_PATH:$BREW_PATH:$RBENV_ROOT/bin:$PYENV_ROOT/bin:$NODEBREW_PATH:$GOPATH/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin:$HOME/.dotnet:$PATH
-  export DOTNET_ROOT=$HOME/.dotnet
+  export PATH=$OPENSSL_PATH:$BREW_PATH:$RBENV_ROOT/bin:$PYENV_ROOT/bin:$NODEBREW_PATH:$GOPATH/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin:$PATH
 
   eval "$(rbenv init -)"
   eval "$(pyenv init --path)"
