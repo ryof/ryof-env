@@ -1,10 +1,13 @@
+# shellcheck shell=bash
+# shellcheck disable=SC1091
 export LESSCHARSET='utf-8'
 export LESS=' -R '
 export HISTSIZE=10000
 export HISTFILESIZE=$HISTSIZE
 export HISTCONTROL=ignoredups
-HISTTIMEFORMAT='%Y-%m-%dT%T%z '
-export JAVA_HOME=`/usr/libexec/java_home`
+export HISTTIMEFORMAT='%Y-%m-%dT%T%z '
+JAVA_HOME=$(/usr/libexec/java_home)
+export JAVA_HOME
 export LANG=en_US.UTF-8
 
 alias fuck='networksetup -setairportpower en0 off; sleep 2; networksetup -setairportpower en0 on'
@@ -18,10 +21,10 @@ if [[ -x $(which colordiff) ]]; then alias diff='colordiff -u'; fi
 if [[ -x $(which gsed) ]]; then alias sed='gsed'; fi
 
 function unzip () {
-	$(which unzip) -d ${1%.*} ${1}
+  $(which unzip) -d "${1%.*}" "${1}"
 }
 function peco-select-history() {
-  READLINE_LINE=$(HISTTIMEFORMAT= history | tail -r | sed -e 's/^\s*[0-9]\+\s\+//' | awk '!a[$0]++' | peco --layout=bottom-up)
+  READLINE_LINE=$(HISTTIMEFORMAT=' ' history | tail -r | sed -e 's/^\s*[0-9]\+\s\+//' | awk '!a[$0]++' | peco --layout=bottom-up)
   READLINE_POINT=${#READLINE_LINE}
 }
 
@@ -29,84 +32,88 @@ bind -x '"\C-r": peco-select-history'
 
 # OSX-specific
 if [[ "$OSTYPE" == "darwin"* ]]; then
-	export PATH=/usr/local/opt/openssl/bin:/usr/local/bin:/usr/local/sbin:$HOME/.rbenv/bin:$PATH:~/.nodebrew/current/bin:$HOME/.dotnet
-  export DOTNET_ROOT=$HOME/.dotnet
-	eval "$(rbenv init -)"
-
-	export PYENV_ROOT=$HOME/.pyenv
-	export PATH=$PYENV_ROOT/bin:$PATH
-	eval "$(pyenv init --path)"
-
-	export PATH=$PATH:~/.nodebrew/current/bin:/usr/local/lib/node_modules
-
-	# brew options
-	export HOMEBREW_CASK_OPTS='--appdir=/Applications'
-
-	# completion settings
-	source $(brew --prefix)/etc/bash_completion.d/git-prompt.sh
-	source $(brew --prefix)/etc/bash_completion.d/git-completion.bash
-	if [ -f $(brew --prefix)/etc/bash_completion ]; then
-		. $(brew --prefix)/etc/bash_completion
-	fi
-	complete -C "$(brew --prefix)/bin/aws_completer" aws
-
-	# Google Cloud SDK settings
-	source $HOME/google-cloud-sdk/path.bash.inc
-	source $HOME/google-cloud-sdk/completion.bash.inc
-
-	# other settings
-	GIT_PS1_SHOWDIRTYSTATE=true
-	export GOPATH=$HOME/.go
+  export OPENSSL_PATH=/usr/local/opt/openssl/bin
+  export BREW_PATH=/usr/local/bin:/usr/local/sbin
+  export RBENV_ROOT=$HOME/.rbenv
+  export PYENV_ROOT=$HOME/.pyenv
+  export NODEBREW_PATH=$HOME/.nodebrew/current/bin
   export ANDROID_HOME="/usr/local/share/android-sdk"
-  export PATH=$PATH:$GOPATH/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin
-	export LESSOPEN="| $(brew --prefix)/bin/src-hilite-lesspipe.sh %s"
-  export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+  export GOPATH=${HOME}/.go
+  export PATH=$OPENSSL_PATH:$BREW_PATH:$RBENV_ROOT/bin:$PYENV_ROOT/bin:$NODEBREW_PATH:$GOPATH/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin:$PATH
+
+  if [[ -x $(which rbenv) ]]; then eval "$(rbenv init -)"; fi
+  if [[ -x $(which pyenv) ]]; then eval "$(pyenv init --path)"; fi
+
+  # brew options
+  export HOMEBREW_CASK_OPTS='--appdir=/Applications'
+
+  # completion settings
+  source "$(brew --prefix)/etc/bash_completion.d/git-prompt.sh"
+  source "$(brew --prefix)/etc/bash_completion.d/git-completion.bash"
+  if [ -f "$(brew --prefix)/etc/bash_completion" ]; then
+    . "$(brew --prefix)/etc/bash_completion"
+  fi
+  complete -C "$(brew --prefix)/bin/aws_completer" aws
+
+  # Google Cloud SDK settings
+  if [[ -x $(which gcloud) ]]; then
+    source "${HOME}/google-cloud-sdk/path.bash.inc"
+    source "${HOME}/google-cloud-sdk/completion.bash.inc"
+  fi
+
+  # other settings
+  export  GIT_PS1_SHOWDIRTYSTATE=true
+  LESSOPEN="| $(brew --prefix)/bin/src-hilite-lesspipe.sh %s"
+  export LESSOPEN
+  if [[ -x $(which gpgconf) ]]; then SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket); fi
+  export SSH_AUTH_SOCK
 fi
 
 # prompt settings
 # almost like an imitation of @mathiasbynens 's '.bash_prompt'
-#	https://github.com/mathiasbynens/dotfiles/blob/master/.bash_prompt
+# https://github.com/mathiasbynens/dotfiles/blob/master/.bash_prompt
 prompt_git() {
-	local s='';
-	local branchName='';
+  local s='';
+  local branchName='';
 
-	# Check if the current directory is in a Git repository.
-	if [ $(git rev-parse --is-inside-work-tree &>/dev/null; echo "${?}") == '0' ]; then
-		# check if the current directory is in .git before running git checks
-		if [ "$(git rev-parse --is-inside-git-dir 2> /dev/null)" == 'false' ]; then
-			# Ensure the index is up to date.
-			git update-index --really-refresh -q &>/dev/null;
-			# Check for uncommitted changes in the index.
-			if ! $(git diff --quiet --ignore-submodules --cached); then
-				s+='+';
-			fi;
-			# Check for unstaged changes.
-			if ! $(git diff-files --quiet --ignore-submodules --); then
-				s+='!';
-			fi;
-			# Check for untracked files.
-			if [ -n "$(git ls-files --others --exclude-standard)" ]; then
-				s+='?';
-			fi;
-			# Check for stashed files.
-			if $(git rev-parse --verify refs/stash &>/dev/null); then
-				s+='$';
-			fi;
-		fi;
+  # Check if the current directory is in a Git repository.
+  # shellcheck disable=SC2046
+  if [ $(git rev-parse --is-inside-work-tree &>/dev/null; echo "${?}") == '0' ]; then
+    # check if the current directory is in .git before running git checks
+    if [ "$(git rev-parse --is-inside-git-dir 2> /dev/null)" == 'false' ]; then
+      # Ensure the index is up to date.
+      git update-index --really-refresh -q &>/dev/null;
+      # Check for uncommitted changes in the index.
+      if ! git diff --quiet --ignore-submodules --cached; then
+        s+='+';
+      fi;
+      # Check for unstaged changes.
+      if ! git diff-files --quiet --ignore-submodules --; then
+        s+='!';
+      fi;
+      # Check for untracked files.
+      if [ -n "$(git ls-files --others --exclude-standard)" ]; then
+        s+='?';
+      fi;
+      # Check for stashed files.
+      if git rev-parse --verify refs/stash &>/dev/null; then
+        s+='$';
+      fi;
+    fi;
 
-		# Get the short symbolic ref.
-		# If HEAD isn’t a symbolic ref, get the short SHA for the latest commit
-		# Otherwise, just give up.
-		branchName="$(git symbolic-ref --quiet --short HEAD 2> /dev/null || \
-			git rev-parse --short HEAD 2> /dev/null || \
-			echo '(unknown)')";
+    # Get the short symbolic ref.
+    # If HEAD isn’t a symbolic ref, get the short SHA for the latest commit
+    # Otherwise, just give up.
+    branchName="$(git symbolic-ref --quiet --short HEAD 2> /dev/null || \
+      git rev-parse --short HEAD 2> /dev/null || \
+      echo '(unknown)')";
 
-		[ -n "${s}" ] && s=" [${s}]";
+    [ -n "${s}" ] && s=" [${s}]";
 
-		echo -e "${1}${branchName}${2}${s}";
-	else
-		return;
-	fi;
+    echo -e "${1}${branchName}${2}${s}";
+  else
+    return;
+  fi;
 }
 
 bold='';
@@ -120,16 +127,16 @@ violet="\e[0;35m"
 
 # Highlight the user name when logged in as root.
 if [[ "${USER}" == "root" ]]; then
-	userStyle="${red}";
+  userStyle="${red}";
 else
-	userStyle="${yellow}";
+  userStyle="${yellow}";
 fi;
 
 # Highlight the hostname when connected via SSH.
 if [[ "${SSH_TTY}" ]]; then
-	hostStyle="${bold}${red}";
+  hostStyle="${bold}${red}";
 else
-	hostStyle="${green}";
+  hostStyle="${green}";
 fi;
 
 # Set the terminal title and prompt.

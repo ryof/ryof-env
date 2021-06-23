@@ -1,0 +1,22 @@
+name: PR Check
+on:
+  pull_request:
+    branches:
+      - master
+jobs:
+  ShellCheck:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Shell Check
+        run: |
+          brew install shellcheck
+          shellcheck ./initosx.sh ./.bash_profile
+  InitOSX:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Execute
+        run: ./initosx.sh
