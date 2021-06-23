@@ -1,6 +1,6 @@
 #!/bin/bash -eux
 # set dotfiles
-if [ ! -e ~/.ryof-env ]; then
+if [ ! "${CI}" ] && [ ! -e ~/.ryof-env ]; then
   if git version > /dev/null 2>&1; then
     git clone https://github.com/ryof/ryof-env ~/.ryof-env
     git clone git://github.com/rupa/z ~/.ryof-env/z
@@ -166,7 +166,7 @@ if [ ! "${CI}" ]; then
 fi
 
 # Agree to the Xcode license
-sudo xcrun cc
+if [ ! "${CI}" ]; then sudo xcrun cc; fi
 
 # install latest stable ruby
 ruby_latest=$(rbenv install -l | grep -v - | tail -1)
