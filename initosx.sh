@@ -113,7 +113,6 @@ brew install gpg2
 brew install gradle
 brew install iftop
 brew install imagemagick
-brew install jad
 brew install jq
 brew install lua
 brew install mas
