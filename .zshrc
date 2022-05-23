@@ -11,6 +11,7 @@ alias less='less -N'
 alias ls='ls -G'
 alias p8='ping 8.8.8.8'
 
+source "$(brew --prefix asdf)/libexec/asdf.sh"
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 
