@@ -6,6 +6,7 @@ export HISTCONTROL=ignoredups
 export HISTTIMEFORMAT='%Y-%m-%dT%T%z '
 export LANG=en_US.UTF-8
 export GPG_TTY=$TTY
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
 alias fuck='networksetup -setairportpower en0 off; sleep 2; networksetup -setairportpower en0 on'
 alias less='less -N'
