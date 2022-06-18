@@ -37,6 +37,10 @@ precmd() {
   echo
 }
 
+_ssh() {
+  compadd `fgrep 'Host ' ~/.ssh/config | awk '{print $2}' | sort`;
+}
+
 peco-history-selection() {
   BUFFER=`history -n 1 | tac  | awk '!a[$0]++' | peco --layout=bottom-up`
   CURSOR=$#BUFFER
