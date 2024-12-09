@@ -22,6 +22,7 @@ if type brew &>/dev/null; then
 fi
 
 source /opt/homebrew/opt/zsh-git-prompt/zshrc.sh
+source <(kubectl completion zsh)
 
 git_prompt() {
   if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = true ]; then
@@ -49,3 +50,6 @@ peco-history-selection() {
 
 zle -N peco-history-selection
 bindkey '^R' peco-history-selection
+
+source <(kubectl completion zsh)
+source <(helm completion zsh)
