@@ -1,0 +1,19 @@
+[window]
+opacity = 0.85
+
+[keyboard]
+bindings = [
+  { key = "Enter", mods = "Super", action = "ToggleSimpleFullscreen" },
+  { key = "C", mods = "Super", action = "Copy" },
+  { key = "V", mods = "Super", action = "Paste" }
+]
+
+[terminal]
+
+[terminal.shell]
+program = "/bin/zsh"
+args = [
+  "-l",
+  "-c",
+  "/opt/homebrew/bin/tmux a -t 0 || /opt/homebrew/bin/tmux -u",
+]
